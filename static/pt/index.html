@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="Explore o portfólio de Matheus de Alencar, Full-Stack Developer e Software Engineer. Veja projetos de desenvolvimento web, APIs, design UX/UI, e mais. Vamos criar algo incrível juntos!">
+        <meta name="author" content="Matheus de Alencar">
+        <meta property="og:title" content="Matheus de Alencar - Desenvolvedor Full-Stack e Engenheiro de Software">
+        <meta property="og:description" content="Explore projetos em desenvolvimento web, APIs, design UX/UI e muito mais. Vamos criar algo incrível juntos!">
+        <meta property="og:image" content="https://matheusdealencar.com/img/Matheus.png">
+        <meta property="og:url" content="https://matheusdealencar.com.br/pt/">
+        <meta property="og:type" content="website"> 
+        <title>Matheus de Alencar</title>
+        <link rel="shortcut icon" href="#" type="image/x-icon">
+        <!-- Ícones BOX -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- CSS Customizado -->
+        <link rel="stylesheet" href="/static/css/main.css">
+        <!-- JAVASCRIPT -->
+        <link href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+        <script src="/static/js/axios.min.js"></script>
+        <script src="/static/js/api.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="#" class="logo">MATHEUS DE ALENCAR</a>
+
+            <div class="nav">
+                <a href="#home">Início</a>
+                <a href="#services">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contact">Contato</a>
+                <div class="dropdown">
+                    Idioma
+                    <div class="language">
+                        <a href="/">Inglês</a>
+                        <a href="#">Português</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-responsive">
+                <a href="#home">Início</a>
+                <a href="#services">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contact">Contato</a>
+                <div class="dropdown">
+                    Idioma
+                    <div class="language">
+                        <a href="/">Inglês</a>
+                        <a href="#">Português</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-hamburguer">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </header>
+
+        <!-- seção início -->
+        <section class="home" id="home">
+            <div class="home-content">
+                <h3>Olá! Eu sou</h3>
+                <h1>Matheus</h1>
+                <h3 class="role-line">
+                    <span class="role-prefix">// </span>
+                    <span id="role-text"></span>
+                    <span class="cursor-blink">_</span>
+                </h3>
+
+                <p>Desenvolvedor Full-Stack, Hacker Ético, Técnico em Informática pelo Instituto Federal do Sul de Minas e graduando no 7º período em Engenharia de Software no Inatel.</p>
+
+                <div class="social-media">
+                    <a href="https://api.whatsapp.com/send?phone=553599028383&text=Ol%C3%A1,%20Matheus!%20Tudo%20bem?" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                    <a href="https://www.instagram.com/matheuz_alencar/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.linkedin.com/in/matheus-de-alencar-455b2033b/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.github.com/titiomathias" target="_blank"><i class='bx bxl-github'></i></a>
+                </div>
+
+                <div class="cv">
+                    <a href="/static/files/Matheus%20de%20Alencar%20-%20Curr%C3%ADculo%202025.pdf" class="btn" download>Baixar CV</a>
+                </div>
+            </div>
+
+            <div class="home-img">
+                <img src="/static/img/Matheus.png" alt="Foto de Perfil">
+            </div>
+        </section>
+        <!-- /seção início -->
+
+        <!-- seção serviços -->
+            <section class="services" id="services">
+                <h2>Meus <span>Serviços</span></h2>
+
+                <div class="services-container">
+                    <div class="services-box">
+                        <i class='bx bx-shield-x'></i>
+
+                        <h3>Pentest & Segurança</h3>
+
+                        <p>
+                            Testes de penetração e análise de vulnerabilidades end-to-end em aplicações web, APIs e redes.<br/><br/>Identifico vetores de ataque antes que agentes maliciosos o façam, entregando relatórios técnicos detalhados com orientações de correção alinhadas ao padrão OWASP.<br/><br/>Disponível para engajamentos pontuais e consultoria contínua de segurança.<br><br><code>OWASP, PTES, Hardening</code>
+                        </p>
+
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+
+                    <div class="services-box">
+                        <i class='bx bx-terminal'></i>
+
+                        <h3>Engenharia de Software</h3>
+
+                        <p>
+                            Desenvolvimento full-stack e arquitetura de software do zero.<br/><br/>Projeto e construo aplicações web responsivas, APIs REST e assíncronas, ferramentas desktop e pipelines de dados — com segurança incorporada desde o primeiro dia.<br/><br/>Foco em arquitetura limpa, escalabilidade e manutenibilidade.<br><br><code>Python, JavaScript, React, Django, FastAPI, Spring Boot, SQL</code>
+                        </p>
+
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+
+                    <div class="services-box">
+                        <i class='bx bx-chalkboard'></i>
+
+                        <h3>Educação e Treinamento</h3>
+
+                        <p>
+                            Workshops, treinamentos práticos e palestras sobre cibersegurança para equipes de desenvolvimento, departamentos de TI e instituições acadêmicas.<br/><br/>Temas incluem fundamentos de hacking ético, práticas de codificação segura, OWASP Top 10 e conscientização sobre engenharia social.<br/><br/>Conhecimento é poder.<br><br><code>Workshops, Palestras, Codificação Segura, OWASP Top 10</code>
+                        </p>
+
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+
+            </section>
+        <!-- /seção serviços -->
+
+        <!-- seção portfólio -->
+            <section class="portfolio" id="portfolio">
+                <h2>Últimos <span>Projetos</span></h2>
+            
+                <div class="portfolio-container">
+                    <div class="portfolio-box">
+                        <img src="/static/img/1.png" alt="Projeto MAI">
+            
+                        <div class="portfolio-layer">
+                            <h3>MAI</h3>
+            
+                            <p>
+                                Solução web para análise de empresas, voltada para promover interações mais seguras entre negócios e clientes. O projeto está em desenvolvimento na incubadora do Instituto Nacional de Telecomunicações (Inatel) e promete ser a "cara" da nossa startup MAI.
+                            </p>
+            
+                            <a href="https://www.youtube.com/watch?v=3lHt5yNjM10" target="_blank"><i class='bx bx-link-external'></i></a>
+                        </div>
+                    </div>
+            
+                    <div class="portfolio-box">
+                        <img src="/static/img/2.png" alt="Projeto Sleep">
+            
+                        <div class="portfolio-layer">
+                            <h3>RandomPG</h3>
+            
+                            <p>
+                                Projeto pessoal. O projeto consiste em um bot para a plataforma Discord que faz o papel de um baú mágico baseado no sistema de RPG "D&D Next", intermediando entre os usuários créditos, itens e ações entre o bot e outros jogadores.
+                            </p>
+            
+                            <a href="https://randompg.discloud.app" target="_blank"><i class='bx bx-link-external'></i></a>
+                        </div>
+                    </div>
+            
+                    <div class="portfolio-box">
+                        <img src="/static/img/3.png" alt="Scripts de Cibersegurança">
+            
+                        <div class="portfolio-layer">
+                            <h3>TEDx Speaker</h3>
+            
+                            <p>
+                                Tive a oportunidade de ser um dos palestrantes do evento TEDx Inatel 2025.
+                            </p>
+            
+                            <a href="https://inatel.br/tedx" target="_blank"><i class='bx bx-link-external'></i></a>
+                        </div>
+                    </div>
+            
+                    <div class="portfolio-box">
+                        <img src="/static/img/4.png" alt="Biblioteca Digital">
+            
+                        <div class="portfolio-layer">
+                            <h3>Enigmas do Delamain</h3>
+            
+                            <p>
+                                Projeto pessoal. Site com enigmas semanais. Não querer cadastro do usuário. Acesse e jogue!
+                            </p>
+            
+                            <a href="https://delamain.discloud.app/" target="_blank"><i class='bx bx-link-external'></i></a>
+                        </div>
+                    </div>
+            
+                    <div class="portfolio-box">
+                        <img src="/static/img/5.png" alt="Simulador de Pagamento com Cartão">
+            
+                        <div class="portfolio-layer">
+                            <h3>Site Institucional</h3>
+
+                            <p>
+                                Projeto contratado no LinkedIn. O projeto envolvia a divulgação do serviço do profissional junto a projetos feitos anteriormente, suas habilidades e contatos das redes sociais. Todos os direitos autorais pertencem ao contratante, formalizados por contrato.
+                            </p>
+
+                            <a href="https://joselucascarpinteiro.com.br/" target="_blank"><i class='bx bx-link-external' ></i></a>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-box">
+                        <img src="/static/img/7.jpg" alt="Project Card">
+
+                        <div class="portfolio-layer">
+                            <h3>Curso de Python - Udemy</h3>
+
+                            <p>
+                                Projeto contratado na 99freelas. O projeto envolveu a criação de aulas de Python, com didática para iniciantes, avançando do básico ao avançado. Os direitos autorais pertencem ao contratante, formalizados por contrato.
+                            </p>
+
+                            <a href="https://www.udemy.com/course/programacao-em-python-do-basico-ao-avancado/" target="_blank"><i class='bx bx-link-external' ></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feedbacks -->
+                <div class="feedbacks" id="feedbacks">
+                    <h2><span>Depoimentos</span> de Clientes</h2>
+                    <div id="result" class="c-carousel__slides js-carousel--simple"></div>
+                
+                    <a id="glider-prev" class="prev">«</a>
+                    <a id="glider-next" class="next">»</a>
+                </div>
+            </section>
+        <!-- /seção portfólio -->
+
+        <!-- seção contato -->
+            <section class="contact" id="contact">
+                <h2>Entre em <span>Contato</span></h2>
+
+                <p class="contact-intro">
+                    Interessado em um teste de penetração, um projeto web ou só quer bater um papo?<br>
+                    Escolha o canal de sua preferência abaixo.
+                </p>
+
+                <div class="contact-cards">
+
+                    <a href="https://api.whatsapp.com/send?phone=553599028383&text=Ol%C3%A1%2C%20Matheus!%20Tudo%20bem%3F"
+                       target="_blank" class="contact-card contact-card--whatsapp">
+                        <div class="contact-card__icon"><i class='bx bxl-whatsapp'></i></div>
+                        <div class="contact-card__body">
+                            <span class="contact-card__label">// WhatsApp</span>
+                            <h3>Chamar no WhatsApp</h3>
+                            <p>Resposta mais rápida. Disponível para perguntas rápidas e escopo de projetos.</p>
+                        </div>
+                        <i class='bx bx-chevron-right contact-card__arrow'></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/matheus-de-alencar-455b2033b/"
+                       target="_blank" class="contact-card contact-card--linkedin">
+                        <div class="contact-card__icon"><i class='bx bxl-linkedin'></i></div>
+                        <div class="contact-card__body">
+                            <span class="contact-card__label">// LinkedIn</span>
+                            <h3>Conectar</h3>
+                            <p>Para networking profissional, propostas ou documentos de escopo de pentest.</p>
+                        </div>
+                        <i class='bx bx-chevron-right contact-card__arrow'></i>
+                    </a>
+
+                    <a href="mailto:contato@matheusdealencar.com"
+                       class="contact-card contact-card--email">
+                        <div class="contact-card__icon"><i class='bx bx-envelope'></i></div>
+                        <div class="contact-card__body">
+                            <span class="contact-card__label">// Email</span>
+                            <h3>Enviar E-mail</h3>
+                            <p>Para propostas formais, NDAs ou documentos de escopo de pentest.</p>
+                        </div>
+                        <i class='bx bx-chevron-right contact-card__arrow'></i>
+                    </a>
+
+                </div>
+            </section>
+        <!-- /seção contato -->
+
+        <footer>
+            <p>Copyright &copy; 2026 por Matheus de Alencar. Todos os direitos reservados.</p>
+        </footer>
+    </body>
+    <script src="/static/js/main.js"></script>
+</html>

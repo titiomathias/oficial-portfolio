@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /pt/thankyou.html
+Disallow: /thankyou.html

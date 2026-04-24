@@ -1,0 +1,5 @@
+fastapi[standard]
+cloudscraper
+urllib3
+beautifulsoup4
+python-dotenv

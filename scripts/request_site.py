@@ -8,7 +8,7 @@ from dotenv import dotenv_values
 
 config = dotenv_values(".env")
 
-url = f"{config["99URL"]}/user/tio-mathias"
+url = f"{config["URL"]}/user/tio-mathias"
 
 FILE_PATH = Path(__file__).parent / "feedbacks.json"
 
@@ -28,7 +28,7 @@ def request_site():
             for p, x in zip(left_elements, right_elements):
                 data = {}
                 if "Cancelado" not in x.get_text():
-                    data["link"] = f"{config['99URL']}+{p.a.get('href')}"
+                    data["link"] = f"{config['URL']}{p.a.get('href')}"
                     data["title"] = p.a.get_text().strip()
                     data["comment"] = p.find(class_="project-comment").get_text().strip()
                     feedbacks.append(data)

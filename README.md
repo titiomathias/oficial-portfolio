@@ -1,6 +1,6 @@
 # Portfólio - Matheus de Alencar
 
-Portfólio pessoal servido por uma API FastAPI, com suporte a dois idiomas (PT/EN) e carregamento dinâmico de avaliações do 99freelas.
+Portfólio pessoal servido por uma API FastAPI, com suporte a dois idiomas (PT/EN) e carregamento dinâmico de avaliações de projetos freelancer.
 
 ## Stack
 
@@ -15,7 +15,7 @@ Portfólio pessoal servido por uma API FastAPI, com suporte a dois idiomas (PT/E
 oficial-portfolio/
 ├── app.py                  # Aplicação FastAPI (rotas e servidor)
 ├── scripts/
-│   └── request_site.py     # Scraper + cache de avaliações (99freelas)
+│   └── request_site.py     # Scraper + cache de avaliações
 ├── static/
 │   ├── index.html          # Portfólio em inglês
 │   ├── pt/
@@ -38,7 +38,8 @@ oficial-portfolio/
 Crie um arquivo `.env` na raiz com base no `.env.example`:
 
 ```env
-99URL=https://www.99freelas.com.br
+URL=https://site.com.br
+PORT=1234
 ```
 
 ## Instalação e execução local
@@ -63,7 +64,7 @@ A aplicação estará disponível em `http://localhost:8000`.
 |--------|------|-----------|
 | `GET` | `/` | Portfólio em inglês |
 | `GET` | `/pt` | Portfólio em português |
-| `GET` | `/reviews` | Avaliações do 99freelas (cache de 24h) |
+| `GET` | `/reviews` | Avaliações de clientes freelancer (cache de 24h) |
 | `GET` | `/health` | Health check |
 | `GET` | `/static/...` | Arquivos estáticos |
 

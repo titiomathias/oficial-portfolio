@@ -1,3 +1,4 @@
+uvicorn
 fastapi[standard]
 cloudscraper
 urllib3

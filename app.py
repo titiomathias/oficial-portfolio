@@ -1,8 +1,12 @@
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pathlib import Path
 from scripts import request_site
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
 
 STATIC_DIR = Path(__file__).parent / "static"
 
@@ -11,7 +15,6 @@ app = FastAPI(
     description="Meu portfólio oficial",
     version="2.2.0"
 )
-
 
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -48,3 +51,7 @@ def get_reviews():
     if "error" in feedbacks:
         raise HTTPException(status_code=500, detail=feedbacks["error"])
     return feedbacks
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=config["PORT"])

@@ -15,7 +15,6 @@ FILE_PATH = Path(__file__).parent / "feedbacks.json"
 def request_site():
     scraper = cloudscraper.create_scraper()
     response = scraper.get(url)
-    print(response)
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')

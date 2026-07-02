@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -51,6 +51,14 @@ def get_reviews():
     if "error" in feedbacks:
         raise HTTPException(status_code=500, detail=feedbacks["error"])
     return feedbacks
+
+
+@app.get("/_probe")
+async def probe(request: Request):
+    return {
+        "client_host": request.client.host if request.client else None,
+        "headers": dict(request.headers),
+    }
 
 
 if __name__ == "__main__":

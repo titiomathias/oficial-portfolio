@@ -52,13 +52,13 @@ def get_reviews():
         raise HTTPException(status_code=500, detail=feedbacks["error"])
     return feedbacks
 
-
-@app.get("/_probe")
-async def probe(request: Request):
-    return {
-        "client_host": request.client.host if request.client else None,
-        "headers": dict(request.headers),
-    }
+# Probe client
+#@app.get("/_probe")
+#async def probe(request: Request):
+#    return {
+#        "client_host": request.client.host if request.client else None,
+#        "headers": dict(request.headers),
+#    }
 
 
 if __name__ == "__main__":

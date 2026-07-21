@@ -13,7 +13,8 @@ STATIC_DIR = Path(__file__).parent / "static"
 app = FastAPI(
     title="Matheus de Alencar Costa Oliveira - Portfólio",
     description="Meu portfólio oficial",
-    version="2.2.0"
+    version="2.2.0",
+    docs_url=None
 )
 
 if STATIC_DIR.exists():

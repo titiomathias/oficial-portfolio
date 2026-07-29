@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Blog — Matheus de Alencar{% endblock %}
+{% block description %}Notas sobre projetos pessoais, jornada de desenvolvimento e o que aprendo pelo caminho.{% endblock %}
+{% block canonical_path %}/blog/{% endblock %}
+
+{% block content %}
+    <div class="term" aria-label="Terminal">
+        <div class="term__bar">
+            <span class="term__dot term__dot--live"></span>
+            <span class="term__dot"></span>
+            <span class="term__dot"></span>
+            <span class="term__title">matheus@portfolio - ~/blog</span>
+        </div>
+        <div class="term__body">
+            <p class="term__line">
+                <span class="prompt">$</span>
+                <span data-typewriter="ls -la ~/blog --sort=date"></span><span class="cursor-blink">_</span>
+            </p>
+            <p class="term__out">
+                {{ posts | length }} registro{{ '' if posts | length == 1 else 's' }} encontrado{{ '' if posts | length == 1 else 's' }}.
+                Anotações sobre projetos pessoais, estudos e a jornada de virar uma pessoa melhor.
+                Sem pauta, sem calendário editorial. Apenas o que valeu a pena escrever.
+            </p>
+        </div>
+    </div>
+
+    {% if tags %}
+        <nav class="filters" aria-label="Filtrar por tag">
+            <span class="filters__label">// filtrar:</span>
+            <button type="button" class="tag tag--btn is-active" data-tag="*">todos</button>
+            {% for tag in tags %}
+                <button type="button" class="tag tag--btn" data-tag="{{ tag }}">{{ tag }}</button>
+            {% endfor %}
+        </nav>
+    {% endif %}
+
+    <div class="rule" role="presentation"></div>
+
+    {% if posts %}
+        <ul class="post-list" id="post-list">
+            {% for post in posts %}
+                <li class="post-item" data-tags="{{ post.tags | join(' ') }}">
+                    <a href="{{ post.url }}">
+                        <time class="post-item__date" datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
+                        <div class="post-item__body">
+                            <h2 class="post-item__title">{{ post.title }}</h2>
+                            {% if post.summary %}
+                                <p class="post-item__summary">{{ post.summary }}</p>
+                            {% endif %}
+                            <p class="post-item__meta">
+                                {% for tag in post.tags %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                                <span class="post-item__time">{{ post.reading_time }} min de leitura</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <p class="empty" id="no-results" hidden>
+            <span class="prompt">$</span> nenhum post com essa tag.
+        </p>
+    {% else %}
+        <p class="empty">
+            <span class="prompt">$</span> nenhum post publicado ainda. volte em breve.
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="/static/js/blog.js"></script>
+{% endblock %}

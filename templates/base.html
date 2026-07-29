@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+{#
+    lang="pt-br" é o padrão servido: o conteúdo dos posts é em português e é o
+    que um visitante sem JavaScript vê. `data-i18n-live` avisa o lang.js que
+    esta página traduz a interface no lugar, sem trocar de URL.
+#}
+<html lang="pt-br" data-i18n-live>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -11,8 +16,10 @@
         <meta property="og:url" content="https://matheusdealencar.com.br{% block canonical_path %}/blog/{% endblock %}">
         <meta property="og:type" content="{% block og_type %}website{% endblock %}">
         <link rel="canonical" href="https://matheusdealencar.com.br{{ self.canonical_path() }}"/>
-        <title>{% block title %}Blog — Matheus de Alencar{% endblock %}</title>
+        <title>{% block title %}Blog - Matheus de Alencar{% endblock %}</title>
         <link rel="shortcut icon" href="#" type="image/x-icon">
+        <!-- Idioma: bloqueante de propósito, para resolver antes da primeira pintura -->
+        <script src="/static/js/lang.js"></script>
         <!-- BOX Icons -->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- CSS Custom -->
@@ -25,31 +32,31 @@
             <a href="/" class="logo">MATHEUS DE ALENCAR</a>
 
             <div class="nav">
-                <a href="/#home">Home</a>
-                <a href="/#services">Services</a>
-                <a href="/#portfolio">Portfolio</a>
-                <a href="/#contact">Contact</a>
-                <a href="/blog" class="nav--active">Blog</a>
+                <a href="/#home" data-i18n="nav.home">Início</a>
+                <a href="/#services" data-i18n="nav.services">Serviços</a>
+                <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
+                <a href="/#contact" data-i18n="nav.contact">Contato</a>
+                <a href="/blog" class="nav--active" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
-                    Language
+                    <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
-                        <a href="/">English</a>
-                        <a href="/pt/">Portuguese</a>
+                        <a href="/" data-lang-choice="en" data-i18n="nav.english">Inglês</a>
+                        <a href="/pt/" data-lang-choice="pt" data-i18n="nav.portuguese">Português</a>
                     </div>
                 </div>
             </div>
 
             <div class="nav-responsive">
-                <a href="/#home">Home</a>
-                <a href="/#services">Services</a>
-                <a href="/#portfolio">Portfolio</a>
-                <a href="/#contact">Contact</a>
-                <a href="/blog" class="nav--active">Blog</a>
+                <a href="/#home" data-i18n="nav.home">Início</a>
+                <a href="/#services" data-i18n="nav.services">Serviços</a>
+                <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
+                <a href="/#contact" data-i18n="nav.contact">Contato</a>
+                <a href="/blog" class="nav--active" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
-                    Language
+                    <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
-                        <a href="/">English</a>
-                        <a href="/pt/">Portuguese</a>
+                        <a href="/" data-lang-choice="en" data-i18n="nav.english">Inglês</a>
+                        <a href="/pt/" data-lang-choice="pt" data-i18n="nav.portuguese">Português</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +73,7 @@
         </main>
 
         <footer>
-            <p>Copyright &copy; 2026 by Matheus de Alencar. All Rights Reserved.</p>
+            <p data-i18n="footer.rights">Copyright &copy; 2026 por Matheus de Alencar. Todos os direitos reservados.</p>
         </footer>
 
         <script src="/static/js/main.js"></script>

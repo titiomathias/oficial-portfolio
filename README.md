@@ -110,9 +110,45 @@ arquivo — não existe banco de dados nem índice para atualizar.
 - Um post com metadados inválidos é ignorado na listagem, com um aviso no log — o blog não quebra.
 - Se o texto contiver sintaxe Jinja (`{{ }}` ou `{% %}`), envolva o trecho em `{% raw %}`.
 
-`templates/blog/posts/modelo-de-post.html` é uma referência viva de toda a marcação
-disponível (títulos, listas, citações, notas, código, imagens e tabelas). Apague quando
-não precisar mais.
+## Idioma
+
+Toda a lógica de idioma vive em `static/js/lang.js`, carregado de forma bloqueante no
+`<head>` para resolver antes da primeira pintura. O idioma é resolvido nesta ordem:
+
+1. escolha explícita salva em `localStorage` (`mdac:lang`);
+2. idioma do navegador (`navigator.languages`);
+3. inglês, como fallback.
+
+Só a escolha explícita é persistida — a detecção continua dinâmica, para não congelar um
+chute como se fosse decisão do usuário.
+
+**Portfólio** (`/` e `/pt/`): páginas separadas por URL. Cada uma declara o próprio idioma
+no `<html>` e o endereço da outra versão:
+
+```html
+<html lang="en" data-lang-page="en" data-lang-alt="/pt/">
+```
+
+Se o idioma resolvido não bate com o da página, o script faz `location.replace()` para a
+alternativa. Como depois do redirecionamento o idioma passa a bater, não há loop.
+
+**Blog** (`/blog`): uma única URL que traduz a interface no lugar. O `<html>` declara
+`data-i18n-live`, e cada texto de interface recebe `data-i18n="chave"`:
+
+```html
+<a href="/#home" data-i18n="nav.home">Início</a>
+<span data-i18n="blog.readingTime" data-i18n-n="{{ post.reading_time }}">3 min de leitura</span>
+```
+
+O HTML servido já vem em português, então quem está sem JavaScript continua lendo a página
+inteira em português. `data-i18n-n` alimenta o `{n}` da tradução e escolhe entre `chave` e
+`chave_one` no singular. Para adicionar um texto novo, inclua a chave nos **dois**
+dicionários de `lang.js` — as tabelas `pt` e `en` devem ter exatamente as mesmas chaves.
+
+Os posts são escritos só em português: o texto, os títulos e os resumos carregam
+`lang="pt-br"` explícito, então continuam corretos para leitores de tela mesmo com a
+interface em inglês. Com a interface em inglês, um aviso discreto informa que os posts
+estão em português.
 
 ## Deploy
 

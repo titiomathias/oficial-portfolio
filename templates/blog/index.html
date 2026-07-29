@@ -18,17 +18,19 @@
                 <span data-typewriter="ls -la ~/blog --sort=date"></span><span class="cursor-blink">_</span>
             </p>
             <p class="term__out">
-                {{ posts | length }} registro{{ '' if posts | length == 1 else 's' }} encontrado{{ '' if posts | length == 1 else 's' }}.
-                Anotações sobre projetos pessoais, estudos e a jornada de virar uma pessoa melhor.
-                Sem pauta, sem calendário editorial. Apenas o que valeu a pena escrever.
+                <span data-i18n="blog.records" data-i18n-n="{{ posts | length }}">{{ posts | length }} registro{{ '' if posts | length == 1 else 's' }} encontrado{{ '' if posts | length == 1 else 's' }}.</span>
+                <span data-i18n="blog.intro">Anotações sobre projetos pessoais, estudos e a jornada de virar uma pessoa melhor. Sem pauta, sem calendário editorial. Apenas o que valeu a pena escrever.</span>
             </p>
         </div>
     </div>
 
+    {# Visível só quando a interface está em inglês: os posts seguem em português. #}
+    <p class="lang-notice" data-i18n="blog.langNotice">Os posts são escritos em português.</p>
+
     {% if tags %}
         <nav class="filters" aria-label="Filtrar por tag">
-            <span class="filters__label">// filtrar:</span>
-            <button type="button" class="tag tag--btn is-active" data-tag="*">todos</button>
+            <span class="filters__label" data-i18n="blog.filter">// filtrar:</span>
+            <button type="button" class="tag tag--btn is-active" data-tag="*" data-i18n="blog.all">todos</button>
             {% for tag in tags %}
                 <button type="button" class="tag tag--btn" data-tag="{{ tag }}">{{ tag }}</button>
             {% endfor %}
@@ -44,15 +46,16 @@
                     <a href="{{ post.url }}">
                         <time class="post-item__date" datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
                         <div class="post-item__body">
-                            <h2 class="post-item__title">{{ post.title }}</h2>
+                            {# lang explícito: títulos e resumos ficam em português mesmo com a interface em inglês #}
+                            <h2 class="post-item__title" lang="pt-br">{{ post.title }}</h2>
                             {% if post.summary %}
-                                <p class="post-item__summary">{{ post.summary }}</p>
+                                <p class="post-item__summary" lang="pt-br">{{ post.summary }}</p>
                             {% endif %}
                             <p class="post-item__meta">
                                 {% for tag in post.tags %}
                                     <span class="tag">{{ tag }}</span>
                                 {% endfor %}
-                                <span class="post-item__time">{{ post.reading_time }} min de leitura</span>
+                                <span class="post-item__time" data-i18n="blog.readingTime" data-i18n-n="{{ post.reading_time }}">{{ post.reading_time }} min de leitura</span>
                             </p>
                         </div>
                     </a>
@@ -61,11 +64,11 @@
         </ul>
 
         <p class="empty" id="no-results" hidden>
-            <span class="prompt">$</span> nenhum post com essa tag.
+            <span class="prompt">$</span> <span data-i18n="blog.noResults">nenhum post com essa tag.</span>
         </p>
     {% else %}
         <p class="empty">
-            <span class="prompt">$</span> nenhum post publicado ainda. volte em breve.
+            <span class="prompt">$</span> <span data-i18n="blog.empty">nenhum post publicado ainda. volte em breve.</span>
         </p>
     {% endif %}
 {% endblock %}

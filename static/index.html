@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" data-lang-page="en" data-lang-alt="/pt/">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -11,8 +11,13 @@
         <meta property="og:url" content="https://matheusdealencar.com.br/">
         <meta property="og:type" content="website">        
         <link rel="canonical" href="https://matheusdealencar.com.br/"/>
+        <link rel="alternate" hreflang="en" href="https://matheusdealencar.com.br/"/>
+        <link rel="alternate" hreflang="pt-br" href="https://matheusdealencar.com.br/pt/"/>
+        <link rel="alternate" hreflang="x-default" href="https://matheusdealencar.com.br/"/>
         <title>Matheus de Alencar</title>
         <link rel="shortcut icon" href="#" type="image/x-icon">
+        <!-- Idioma: bloqueante de propósito, para redirecionar antes da primeira pintura -->
+        <script src="/static/js/lang.js"></script>
         <!-- BOX Icons -->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- CSS Custom -->
@@ -36,8 +41,8 @@
                 <div class="dropdown">
                     Language
                     <div class="language">
-                        <a href="#">English</a>
-                        <a href="/pt/">Portuguese</a>
+                        <a href="/" data-lang-choice="en">English</a>
+                        <a href="/pt/" data-lang-choice="pt">Portuguese</a>
                     </div>
                 </div>
             </div>
@@ -51,8 +56,8 @@
                 <div class="dropdown">
                     Language
                     <div class="language">
-                        <a href="#">English</a>
-                        <a href="/pt/">Portuguese</a>
+                        <a href="/" data-lang-choice="en">English</a>
+                        <a href="/pt/" data-lang-choice="pt">Portuguese</a>
                     </div>
                 </div>
             </div>

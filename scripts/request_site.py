@@ -8,13 +8,20 @@ from dotenv import dotenv_values
 
 config = dotenv_values(".env")
 
-url = f"{config['URL']}/user/tio-mathias"
-
 FILE_PATH = Path(__file__).parent / "feedbacks.json"
 
+
+def base_url():
+    base = config.get("URL") or os.getenv("URL")
+    if not base:
+        raise RuntimeError("variável URL não configurada (.env ou ambiente)")
+    return base.rstrip("/")
+
+
 def request_site():
+    base = base_url()
     scraper = cloudscraper.create_scraper()
-    response = scraper.get(url)
+    response = scraper.get(f"{base}/user/tio-mathias")
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -28,7 +35,7 @@ def request_site():
             for p, x in zip(left_elements, right_elements):
                 data = {}
                 if "Cancelado" not in x.get_text():
-                    data["link"] = f"{config['URL']}{p.a.get('href')}"
+                    data["link"] = f"{base}{p.a.get('href')}"
                     data["title"] = p.a.get_text().strip()
                     data["comment"] = p.find(class_="project-comment").get_text().strip()
                     feedbacks.append(data)

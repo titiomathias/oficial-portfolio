@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ meta.title }} - Blog | Matheus de Alencar{% endblock %}
+{% block description %}{{ meta.summary or meta.title }}{% endblock %}
+{% block canonical_path %}{{ meta.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <header class="post-head">
+            <p class="post-head__path">
+                <span class="prompt">$</span> cat ~/blog/<span class="post-head__slug">{{ meta.slug }}</span>.md
+            </p>
+
+            <h1 class="post-head__title">{{ meta.title }}</h1>
+
+            <p class="post-head__meta">
+                <time datetime="{{ meta.date_iso }}">{{ meta.date_display }}</time>
+                <span class="sep">•</span>
+                <span>{{ meta.reading_time }} min de leitura</span>
+                {% if meta.tags %}
+                    <span class="sep">•</span>
+                    {% for tag in meta.tags %}
+                        <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                {% endif %}
+            </p>
+        </header>
+
+        <div class="rule" role="presentation"></div>
+
+        <div class="post-body">
+            {% block post_body %}{% endblock %}
+        </div>
+
+        <div class="rule" role="presentation"></div>
+
+        <footer class="post-foot">
+            <p class="post-foot__sign">
+                <span class="prompt">$</span> EOF — obrigado por ler até aqui.
+            </p>
+
+            <nav class="post-nav" aria-label="Outros posts">
+                {% if older %}
+                    <a href="{{ older.url }}" class="post-nav__link post-nav__link--prev">
+                        <span class="post-nav__label">&lt;&lt; anterior</span>
+                        <span class="post-nav__title">{{ older.title }}</span>
+                    </a>
+                {% else %}
+                    <span></span>
+                {% endif %}
+
+                {% if newer %}
+                    <a href="{{ newer.url }}" class="post-nav__link post-nav__link--next">
+                        <span class="post-nav__label">próximo &gt;&gt;</span>
+                        <span class="post-nav__title">{{ newer.title }}</span>
+                    </a>
+                {% else %}
+                    <span></span>
+                {% endif %}
+            </nav>
+
+            <p class="post-foot__back">
+                <a href="/blog">cd ..</a>
+            </p>
+        </footer>
+    </article>
+{% endblock %}

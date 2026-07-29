@@ -1,0 +1,37 @@
+{% extends "blog/post.html" %}
+
+{% set post = {
+    "title": "Olá, mundo.",
+    "date": "2026-07-29",
+    "summary": "Meu primeiro blog oldschool.",
+    "tags": ["pessoal"],
+} %}
+
+{% block post_body %}
+    <h2>Olá, mundo!</h2>
+
+    <p>
+        Este é o meu primeiro post no meu blog <i>oldschool</i>, mas claro, com a minha carinha <code>cyberpunk</code>.
+    </p>
+
+    <p>
+        Meu objetivo é fazer uma espécie de "Diário de Bordo", então documentarei alguns dos meus projetos pessoais, estudos, e até um pouco da minha
+        rotina que tem tido um foco cada vez maior em produtividade e qualidade de vida.
+    </p>
+
+    <h3>Quem sou eu?</h3>
+
+    <p>
+        Se você ainda não sabe quem eu sou, você poderia ir até a seção <a href="/#home">Home</a>, mas eu posso resumir pra você.
+        Eu me chamo Matheus, sou hacker ético, desenvolvedor, e graduando do 8º período de Engenharia de Software.
+    </p>
+
+    <h3>Por que um blog?</h3>
+
+    <p>
+        E por quê não? Honestamente, eu sei que eu poderia postar tudo que pretendo falar aqui no Linkedin, Twitter, Instagram, mas pensei bem
+        e acho que eu posso ser muito mais verdadeiro escrevendo e relatando tudo do meu jeito em meu próprio site. Não tem hashtags, palavras chave,
+        emojis, texto bonito para recrutadores... não. É apenas um estudante documentando uma jornada em um código HTML. Sem mais nem menos.
+    </p>    
+
+{% endblock %}

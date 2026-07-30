@@ -46,11 +46,6 @@
     z-index: 1;
 }
 
-.blog-shell section {
-    min-height: 0;
-    padding: 0;
-}
-
 .nav--active {
     color: var(--main-color) !important;
 }

@@ -46,7 +46,7 @@ body::before {
     z-index: 0;
 }
 
-header {
+body > header {
     position: fixed;
     top: 0;
     left: 0;
@@ -115,7 +115,7 @@ header {
     left: 0;
 }
 
-section {
+body > section {
     min-height: 100vh;
     padding: 6rem 6rem 2rem;
     position: relative;
@@ -620,7 +620,7 @@ span {
 .contact-card--linkedin:hover .contact-card__icon  { color: #0A66C2; }
 .contact-card--email:hover .contact-card__icon     { color: var(--neon-cyan); }
 
-footer {
+body > footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -693,7 +693,7 @@ footer {
         margin: 0.5rem 0;
     }
 
-    section {
+    body > section {
         padding: 6rem 2.5rem;
     }
 

@@ -41,6 +41,7 @@ jobs:
   pip-audit:
     name: Auditoria de dependências
     runs-on: ubuntu-latest
+    needs: testes
 
     steps:
       - uses: actions/checkout@v4

@@ -49,6 +49,14 @@ def index_pt():
     return HTMLResponse(html_path.read_text(encoding="utf-8"))
 
 
+@app.get("/linktree", include_in_schema=False)
+@app.get("/linktree/")
+def get_linktree(request: Request):
+    return templates.TemplateResponse(request, "linktree.html", {
+        "nav_active": "linktree",
+    })
+
+
 @app.get("/reviews", summary="Get Reviews", tags=["Reviews"])
 def get_reviews():
     feedbacks = request_site.get_feedbacks()
@@ -64,6 +72,7 @@ def get_blog(request: Request):
     return templates.TemplateResponse(request, "blog/index.html", {
         "posts": posts,
         "tags": blog.all_tags(posts),
+        "nav_active": "blog",
     })
 
 
@@ -78,6 +87,7 @@ def get_blog_post(request: Request, slug: str):
         "meta": post,
         "newer": newer,
         "older": older,
+        "nav_active": "blog",
     })
 
 # Probe client

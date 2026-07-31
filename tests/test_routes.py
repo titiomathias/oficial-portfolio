@@ -15,7 +15,7 @@ def test_health(client):
     assert resposta.json() == {"status": "OK"}
 
 
-@pytest.mark.parametrize("rota", ["/", "/pt/", "/pt", "/blog", "/blog/"])
+@pytest.mark.parametrize("rota", ["/", "/pt/", "/pt", "/blog", "/blog/", "/linktree", "/linktree/"])
 def test_paginas_respondem_html(client, rota):
     resposta = client.get(rota)
 
@@ -45,7 +45,7 @@ def test_blog_traduz_no_lugar_em_vez_de_redirecionar(client):
     assert "data-lang-alt" not in html
 
 
-@pytest.mark.parametrize("rota", ["/", "/pt/", "/blog/"])
+@pytest.mark.parametrize("rota", ["/", "/pt/", "/blog/", "/linktree"])
 def test_todas_as_paginas_carregam_o_lang_js(client, rota):
     assert "/static/js/lang.js" in client.get(rota).text
 
@@ -154,6 +154,43 @@ def test_slug_malicioso_retorna_404_sem_vazar_arquivo(client, slug):
     assert "STATIC_DIR" not in resposta.text
 
 
+# --- linktree
+
+
+def test_linktree_traduz_no_lugar_em_vez_de_redirecionar(client):
+    html = client.get("/linktree").text
+
+    assert "data-i18n-live" in html
+    assert "data-lang-alt" not in html
+
+
+def test_linktree_nao_marca_o_blog_como_pagina_atual(client):
+    html = client.get("/linktree").text
+
+    assert "nav--active" not in html
+
+
+@pytest.mark.parametrize(
+    "destino",
+    [
+        '"/"',
+        '"/blog"',
+        "Curriculum 2026.pdf",
+        "api.whatsapp.com",
+        "mailto:contato@matheusdealencar.com",
+        "linkedin.com/in/matheus-de-alencar",
+        "github.com/titiomathias",
+        "instagram.com/matheuz_alencar",
+    ],
+)
+def test_linktree_lista_os_canais_principais(client, destino):
+    assert destino in client.get("/linktree").text
+
+
+def test_linktree_carrega_o_proprio_estilo(client):
+    assert "/static/css/linktree.css" in client.get("/linktree").text
+
+
 # --- avaliações
 
 def test_reviews_devolve_a_lista_do_scraper(client, monkeypatch):
@@ -182,7 +219,7 @@ def test_reviews_propaga_falha_do_scraper_como_500(client, monkeypatch):
 # --- consistência do dicionário de idiomas
 
 def _chaves_usadas(client):
-    paginas = [client.get(rota).text for rota in ("/", "/pt/", "/blog/")]
+    paginas = [client.get(rota).text for rota in ("/", "/pt/", "/blog/", "/linktree")]
     paginas += [client.get(post.url).text for post in POSTS_REAIS]
     return {chave for html in paginas for chave in re.findall(r'data-i18n="([^"]+)"', html)}
 

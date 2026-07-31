@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Links — Matheus de Alencar{% endblock %}
+{% block description %}Todos os canais do Matheus de Alencar em um lugar só: portfólio, blog, currículo, contato e redes.{% endblock %}
+{% block og_title %}Matheus de Alencar — Links{% endblock %}
+{% block canonical_path %}/linktree{% endblock %}
+{% block og_type %}profile{% endblock %}
+
+{# A casca do blog dá o layout vertical; linktree-page ajusta largura e espaçamento. #}
+{% block body_class %}blog-page linktree-page crt{% endblock %}
+{% block main_class %}blog-shell linktree-shell{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/linktree.css">
+{% endblock %}
+
+{% block content %}
+    <section class="lt-id">
+        <div class="lt-avatar">
+            <img src="/static/img/Matheus.png" alt="Matheus de Alencar">
+        </div>
+
+        <h1 class="lt-name">MATHEUS DE ALENCAR</h1>
+
+        <p class="lt-role">
+            <span class="prompt">~#</span>
+            <span data-i18n="linktree.role">Dev Full-Stack · Hacker Ético · Software Engineer</span>
+        </p>
+
+        <div class="social-media lt-social">
+            <a href="https://www.linkedin.com/in/matheus-de-alencar-455b2033b/" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://www.github.com/titiomathias" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+            <a href="https://www.instagram.com/matheuz_alencar/" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="https://api.whatsapp.com/send?phone=553599028383&text=Ol%C3%A1,%20Matheus!%20Tudo%20bem?" target="_blank" aria-label="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+        </div>
+    </section>
+
+    <div class="term" aria-label="Terminal">
+        <div class="term__bar">
+            <span class="term__dot term__dot--live"></span>
+            <span class="term__dot"></span>
+            <span class="term__dot"></span>
+            <span class="term__title">matheus@portfolio - ~/linktree</span>
+        </div>
+        <div class="term__body">
+            <p class="term__line">
+                <span class="prompt">$</span>
+                <span data-typewriter="cat ~/links.txt"></span><span class="cursor-blink">_</span>
+            </p>
+            <p class="term__out" data-i18n="linktree.intro">
+                Engenharia de software e segurança ofensiva. Aqui ficam todos os canais: onde eu escrevo, onde eu publico código e onde me chamar para um projeto.
+            </p>
+        </div>
+    </div>
+
+    <div class="rule" role="presentation"></div>
+
+    <h2 class="lt-group" data-i18n="linktree.group.content">// conteúdo</h2>
+    <nav class="lt-links">
+        <a href="/" class="lt-link">
+            <span class="lt-link__icon"><i class='bx bx-user-circle'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title" data-i18n="linktree.portfolio">Portfólio</span>
+                <span class="lt-link__desc" data-i18n="linktree.portfolio.desc">Projetos, serviços, prêmios e a trajetória completa.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+
+        <a href="/blog" class="lt-link">
+            <span class="lt-link__icon"><i class='bx bx-terminal'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title" data-i18n="linktree.blog">Blog</span>
+                <span class="lt-link__desc" data-i18n="linktree.blog.desc">Notas sobre projetos pessoais, estudos e segurança.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+
+        <a href="/static/files/Matheus de Alencar Costa Oliveira - Curriculum 2026.pdf" class="lt-link" download>
+            <span class="lt-link__icon"><i class='bx bx-file'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title" data-i18n="linktree.cv">Currículo</span>
+                <span class="lt-link__desc" data-i18n="linktree.cv.desc">PDF atualizado, pronto para download.</span>
+            </span>
+            <i class='bx bx-download lt-link__arrow'></i>
+        </a>
+    </nav>
+
+    <h2 class="lt-group" data-i18n="linktree.group.contact">// contato</h2>
+    <nav class="lt-links">
+        <a href="https://api.whatsapp.com/send?phone=553599028383&text=Ol%C3%A1,%20Matheus!%20Tudo%20bem?"
+           target="_blank" class="lt-link lt-link--whatsapp">
+            <span class="lt-link__icon"><i class='bx bxl-whatsapp'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">WhatsApp</span>
+                <span class="lt-link__desc" data-i18n="linktree.whatsapp.desc">Resposta mais rápida. Dúvidas e orçamentos.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+
+        <a href="mailto:contato@matheusdealencar.com" class="lt-link lt-link--email">
+            <span class="lt-link__icon"><i class='bx bx-envelope'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title" data-i18n="linktree.email">E-mail</span>
+                <span class="lt-link__desc" data-i18n="linktree.email.desc">Propostas formais, NDAs e escopos de pentest.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+    </nav>
+
+    <h2 class="lt-group" data-i18n="linktree.group.social">// redes</h2>
+    <nav class="lt-links">
+        <a href="https://www.linkedin.com/in/matheus-de-alencar-455b2033b/" target="_blank" class="lt-link lt-link--linkedin">
+            <span class="lt-link__icon"><i class='bx bxl-linkedin'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">LinkedIn</span>
+                <span class="lt-link__desc" data-i18n="linktree.linkedin.desc">Rede profissional, vagas e parcerias.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+
+        <a href="https://www.github.com/titiomathias" target="_blank" class="lt-link lt-link--github">
+            <span class="lt-link__icon"><i class='bx bxl-github'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">GitHub</span>
+                <span class="lt-link__desc" data-i18n="linktree.github.desc">Código aberto, scripts e experimentos.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+
+        <a href="https://www.instagram.com/matheuz_alencar/" target="_blank" class="lt-link lt-link--instagram">
+            <span class="lt-link__icon"><i class='bx bxl-instagram'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">Instagram</span>
+                <span class="lt-link__desc" data-i18n="linktree.instagram.desc">Bastidores, eventos e o lado menos técnico.</span>
+            </span>
+            <i class='bx bx-chevron-right lt-link__arrow'></i>
+        </a>
+    </nav>
+
+    <h2 class="lt-group" data-i18n="linktree.group.highlights">// destaques</h2>
+    <nav class="lt-links">
+        <a href="https://inatel.br/tedx" target="_blank" class="lt-link">
+            <span class="lt-link__icon"><i class='bx bx-microphone'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">TEDx Inatel 2025</span>
+                <span class="lt-link__desc" data-i18n="linktree.tedx.desc">Palestrante convidado do evento.</span>
+            </span>
+            <i class='bx bx-link-external lt-link__arrow'></i>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/matheus-de-alencar-455b2033b_a-duckware-%C3%A9-top-1-da-bsides-sp-2026-activity-7462512264173121536-yJtP"
+           target="_blank" class="lt-link">
+            <span class="lt-link__icon"><i class='bx bx-trophy'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title" data-i18n="linktree.ctf">Top 1 — CTF BSides SP 2026</span>
+                <span class="lt-link__desc" data-i18n="linktree.ctf.desc">1º lugar com o time Duckware.</span>
+            </span>
+            <i class='bx bx-link-external lt-link__arrow'></i>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=3lHt5yNjM10" target="_blank" class="lt-link">
+            <span class="lt-link__icon"><i class='bx bx-rocket'></i></span>
+            <span class="lt-link__body">
+                <span class="lt-link__title">MAI</span>
+                <span class="lt-link__desc" data-i18n="linktree.mai.desc">Startup incubada no Inatel — análise de empresas.</span>
+            </span>
+            <i class='bx bx-link-external lt-link__arrow'></i>
+        </a>
+    </nav>
+
+    <p class="lt-back">
+        <a href="/" data-i18n="linktree.back">cd .. # voltar ao portfólio</a>
+    </p>
+{% endblock %}
+
+{% block scripts %}
+    {# blog.js: só o efeito de digitação é usado aqui — o filtro de tags sai fora sozinho. #}
+    <script src="/static/js/blog.js"></script>
+{% endblock %}

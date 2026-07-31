@@ -27,7 +27,9 @@
         <link rel="stylesheet" href="/static/css/blog.css">
         {% block head %}{% endblock %}
     </head>
-    <body class="blog-page crt">
+    {# `blog-page` é a casca de layout (flex vertical + rodapé colado embaixo);
+       páginas novas somam a própria classe em cima dela. #}
+    <body class="{% block body_class %}blog-page crt{% endblock %}">
         <header>
             <a href="/" class="logo">MATHEUS DE ALENCAR</a>
 
@@ -36,7 +38,7 @@
                 <a href="/#services" data-i18n="nav.services">Serviços</a>
                 <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
                 <a href="/#contact" data-i18n="nav.contact">Contato</a>
-                <a href="/blog" class="nav--active" data-i18n="nav.blog">Blog</a>
+                <a href="/blog" class="{{ 'nav--active' if nav_active|default('') == 'blog' }}" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
                     <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
@@ -51,7 +53,7 @@
                 <a href="/#services" data-i18n="nav.services">Serviços</a>
                 <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
                 <a href="/#contact" data-i18n="nav.contact">Contato</a>
-                <a href="/blog" class="nav--active" data-i18n="nav.blog">Blog</a>
+                <a href="/blog" class="{{ 'nav--active' if nav_active|default('') == 'blog' }}" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
                     <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
@@ -68,7 +70,7 @@
             </div>
         </header>
 
-        <main class="blog-shell">
+        <main class="{% block main_class %}blog-shell{% endblock %}">
             {% block content %}{% endblock %}
         </main>
 

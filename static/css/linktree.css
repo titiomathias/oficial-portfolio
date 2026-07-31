@@ -1,0 +1,201 @@
+
+.linktree-shell {
+    max-width: 620px;
+}
+
+
+/* ---- Identidade ---- */
+
+.lt-id {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+
+.lt-avatar {
+    position: relative;
+    display: inline-block;
+    width: 8.5rem;
+}
+
+.lt-avatar img {
+    display: block;
+    width: 100%;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    box-shadow: var(--neon-glow-cyan), 0 0 40px rgba(0,245,255,0.25);
+}
+
+.lt-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -12%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,245,255,0.18) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.lt-name {
+    margin-top: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--main-color);
+    text-shadow: 0 0 18px rgba(0,245,255,0.35);
+}
+
+.lt-role {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--blog-dim);
+}
+
+/* Ícones menores e mais juntos que os da home: aqui eles são atalho, não CTA. */
+.lt-social a {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1.4rem;
+    margin: 1.3rem 0.35rem 0;
+}
+
+
+/* ---- Grupos ---- */
+
+.lt-group {
+    margin: 2.2rem 0 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blog-dimmer);
+}
+
+
+/* ---- Links ---- */
+
+.lt-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.lt-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1rem 1.2rem;
+    color: var(--text-color);
+    background: rgba(13,13,13,0.5);
+    border: 1px solid var(--blog-line);
+    border-left: 2px solid rgba(0,245,255,0.35);
+    border-radius: 0.4rem;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
+}
+
+.lt-link:hover {
+    border-color: var(--main-color);
+    box-shadow: var(--neon-glow-cyan);
+    background: rgba(0,245,255,0.03);
+    transform: translateX(5px);
+}
+
+.lt-link__icon {
+    width: 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    text-align: center;
+    color: var(--main-color);
+    transition: color 0.3s;
+}
+
+.lt-link__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.lt-link__title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    transition: color 0.3s;
+}
+
+.lt-link:hover .lt-link__title {
+    color: var(--main-color);
+}
+
+.lt-link__desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--blog-dim);
+}
+
+.lt-link__arrow {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.2);
+    transition: color 0.3s;
+}
+
+.lt-link:hover .lt-link__arrow {
+    color: var(--main-color);
+}
+
+/* Cor da marca só no hover — em repouso a paleta continua monocromática. */
+.lt-link--whatsapp:hover .lt-link__icon  { color: #25D366; }
+.lt-link--linkedin:hover .lt-link__icon  { color: #0A66C2; }
+.lt-link--instagram:hover .lt-link__icon { color: #E1306C; }
+.lt-link--github:hover .lt-link__icon    { color: #ffffff; }
+.lt-link--email:hover .lt-link__icon     { color: var(--neon-cyan); }
+
+
+/* ---- Volta ---- */
+
+.lt-back {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.lt-back a {
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+}
+
+.lt-back a::before {
+    content: '$ ';
+    color: var(--blog-dimmer);
+}
+
+.lt-back a:hover {
+    text-shadow: var(--neon-glow-cyan);
+}
+
+
+/* ---- Responsivo ---- */
+
+@media (max-width: 640px) {
+    .lt-avatar {
+        width: 7rem;
+    }
+
+    .lt-name {
+        font-size: 1.25rem;
+    }
+
+    .lt-link {
+        padding: 0.9rem 1rem;
+        gap: 0.9rem;
+    }
+
+    .lt-link__title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lt-link:hover {
+        transform: none;
+    }
+}

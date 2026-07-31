@@ -17,8 +17,9 @@ oficial-portfolio/
 ├── scripts/
 │   ├── request_site.py     # Scraper + cache de avaliações
 │   └── blog.py             # Registro de posts (lê os metadados dos templates)
-├── templates/              # Templates Jinja2 (blog)
+├── templates/              # Templates Jinja2 (blog e linktree)
 │   ├── base.html           # Layout base: head, header, footer
+│   ├── linktree.html       # Página de links (/linktree)
 │   └── blog/
 │       ├── index.html      # Listagem de posts
 │       ├── post.html       # Layout de um post
@@ -29,7 +30,8 @@ oficial-portfolio/
 │   │   └── index.html      # Portfólio em português
 │   ├── css/
 │   │   ├── main.css
-│   │   └── blog.css        # Camada visual do blog (CRT, terminal, tipografia)
+│   │   ├── blog.css        # Camada visual do blog (CRT, terminal, tipografia)
+│   │   └── linktree.css    # Camada visual da página de links
 │   ├── js/
 │   │   ├── main.js         # Menu, typewriter, glitch
 │   │   ├── api.js          # Requisição e renderização dos feedbacks
@@ -77,6 +79,7 @@ A aplicação estará disponível em `http://localhost:8000`.
 | `GET` | `/reviews` | Avaliações de clientes freelancer (cache de 24h) |
 | `GET` | `/blog` | Listagem de posts |
 | `GET` | `/blog/{slug}` | Post individual |
+| `GET` | `/linktree` | Página de links (estilo linktree, bilíngue in-place) |
 | `GET` | `/health` | Health check |
 | `GET` | `/static/...` | Arquivos estáticos |
 

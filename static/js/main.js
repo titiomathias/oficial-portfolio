@@ -82,8 +82,8 @@ window.addEventListener('scroll', () => {
     if (!el) return;
     const lang = document.documentElement.lang;
     const roles = lang === 'pt'
-        ? ['Desenvolvedor Full-Stack', 'Hacker Ético', 'Pentester', 'Engenheiro de Software']
-        : ['Full-Stack Developer', 'Ethical Hacker', 'Pentester', 'Software Engineer'];
+        ? ['Dev Full-Stack', 'Hacker Ético', 'Pentester', 'Software Engineer']
+        : ['Dev Full-Stack', 'Ethical Hacker', 'Pentester', 'Software Engineer'];
     let ri = 0, ci = 0, deleting = false;
     function tick() {
         const word = roles[ri];

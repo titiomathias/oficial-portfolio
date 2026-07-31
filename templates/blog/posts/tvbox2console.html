@@ -1,0 +1,57 @@
+{% extends "blog/post.html" %}
+
+{% set post = {
+    "title": "TV Box para console.",
+    "date": "2026-07-30",
+    "summary": "Transformando um TV Box em um console retrô.",
+    "tags": ["projeto", "hardware"],
+} %}
+
+{% block post_body %}
+    <h2>A ideia inicial</h2>
+
+    <p>
+        Minha namorada tinha um desses TV Box parado em casa, o clássico dispositivo que substitui uma TV Smart e pode até ter aquele conjunto de canais
+        piratas ou aplicativos de streaming de graça (que vira e mexe vivem caindo, independente da sua Internet). Então por quê não transformar esse
+        dispositivo em algo mais útil ao invés de deixar esse hardware juntando poeira?
+    </p>
+
+    <p>
+        Entre as ideias iniciais eu tinha:
+        <ul>
+            <li>Mini-servidor: a depender do hardware, poderia funcionar.</li>
+            <li>Mini-computador: também dependeria do hardware, mas eu precisaria de mais peças externas.</li>
+            <li>Console retrô: simples e direto, a maioria dos hardwares desse tipo de dispositivo suporta até jogos de PS1.</li>
+        </ul>
+        Devido as limitações de hardware, tive que escolher a terceira opção, então essa postagem é sobre o meu processo do zero para conseguir transformar
+        meu TV Box em um console retrô.
+    </p>
+
+    <h2>Especificações do TV Box</h2>
+
+    <ul>
+        <li>
+            Nome: Meoflix Flixstar
+        </li>
+    </ul>
+
+    <p>
+        O meu maior problema foi o chip. O SoC <code>Hisilicon Hi3798MV200</code> tem drivers fechados. O que significa que inserir outro sistema
+        como o Arch Linux é gerar uma série de problemas de comptaibilidade com esses drivers desconhecidos até então.
+    </p>
+
+    <p>
+        Até aqui a ideia estava indo por água baixo, porque minha melhor alternativa era baixar o <a href="https://www.retroarch.com/">RetroArch</a> direto
+        no TV Box e usá-lo direto no Android, sem mais nem menos (o que não seria tão divertido), até eu achar a minha solução no Github.
+    </p>
+
+    <h2>e2d-hi3798mv200</h2>
+
+    <p>
+        O repositório <a href="https://github.com/leandrotsampa/e2d-hi3798mv200">e2d-hi3798mv200</a> é um projeto de uma imagem que reutiliza todo o kernel
+        fechado da HiSlicion, mas ao invés de ele utilizar um Android, ele usa um Debian. Então temos de volta a esperança de colocar um SO que nos dê
+        mais liberdade e leveza (em certo aspecto).
+    </p>
+
+
+{% endblock %}

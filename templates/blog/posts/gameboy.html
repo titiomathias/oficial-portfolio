@@ -1,0 +1,35 @@
+{% extends "blog/post.html" %}
+
+{% set post = {
+    "title": "Quero fazer um gameboy.",
+    "date": "2026-08-03",
+    "summary": "Joguei pokemon e agora quero fazer um gameboy.",
+    "tags": ["pessoal"],
+} %}
+
+{% block post_body %}
+    <h2>Maldito seja o dia que baixei o mGBA</h2>
+
+    <p>
+        <code>mGBA</code> é um emulador <a href="https://mgba.io/">open-source</a> de Game Boy Advanced. Me lembrei de quando era criança e jogava em algum emulador
+        parecido Pokemon Emerald e decidi baixar há alguns atrás. Eis um dos piores erros que cometi nessa semana.
+    </p>
+
+    <p>
+        Fiquei jogando por quase 10h direto e não quero mais ter que ligar o emulador no PC pra carregar a ROM. Quero sacar do meu bolso o meu próprio Game Boy Advanced
+        pra jogar quando eu quiser.
+    </p>
+
+    <p>
+        Antes de qualquer engraçadinho falar qualquer coisa: Não! O celular não conta! Tem que ser o Game Boy! E antes que alguma pessoa de mente sã diga qualquer coisa também: NÃO!
+        NÃO PODE SER UM PRONTO! EU QUERO MONTAR DO ZERO!
+    </p>
+
+    <h3>Meu novo projeto</h3>
+
+    <p>
+        Nos próximos dias vou trabalhar no projeto e documentar do zero cada fase do mesmo, desde o hardware que vou usar até os firmwares/emualdores. Depois vou trazer aqui
+        todos os detalhes da montagem para que você possa reproduzir o seu.
+    </p>    
+
+{% endblock %}

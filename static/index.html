@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="en" data-lang-page="en" data-lang-alt="/pt/">
+<!-- data-lang-entry: é esta a página anunciada como x-default no hreflang, e a
+     única onde o idioma do navegador pode disparar redirecionamento. -->
+<html lang="en" data-lang-page="en" data-lang-alt="/pt/" data-lang-entry>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -7,15 +9,26 @@
         <meta name="author" content="Matheus de Alencar">
         <meta property="og:title" content="Matheus de Alencar - Ethical Hacker, Full-Stack Developer and Software Engineer">
         <meta property="og:description" content="Explore projects in web development, APIs, UX/UI design, Pentest and more. Let's build something amazing together!">
-        <meta property="og:image" content="https://matheusdealencar.com.br/img/Matheus.png">
-        <meta property="og:url" content="https://matheusdealencar.com.br/">
-        <meta property="og:type" content="website">        
-        <link rel="canonical" href="https://matheusdealencar.com.br/"/>
-        <link rel="alternate" hreflang="en" href="https://matheusdealencar.com.br/"/>
-        <link rel="alternate" hreflang="pt-br" href="https://matheusdealencar.com.br/pt/"/>
-        <link rel="alternate" hreflang="x-default" href="https://matheusdealencar.com.br/"/>
-        <title>Matheus de Alencar</title>
-        <link rel="shortcut icon" href="#" type="image/x-icon">
+        <meta property="og:image" content="https://matheusdealencar.com/static/img/Matheus.png">
+        <meta property="og:url" content="https://matheusdealencar.com/">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Matheus de Alencar">
+        <meta property="og:image:alt" content="Matheus de Alencar">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:locale:alternate" content="pt_BR">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Matheus de Alencar - Ethical Hacker, Full-Stack Developer and Software Engineer">
+        <meta name="twitter:description" content="Explore projects in web development, APIs, UX/UI design, Pentest and more. Let's build something amazing together!">
+        <meta name="twitter:image" content="https://matheusdealencar.com/static/img/Matheus.png">
+        <meta name="twitter:image:alt" content="Matheus de Alencar">
+        <link rel="canonical" href="https://matheusdealencar.com/"/>
+        <link rel="alternate" hreflang="en" href="https://matheusdealencar.com/"/>
+        <link rel="alternate" hreflang="pt-br" href="https://matheusdealencar.com/pt/"/>
+        <link rel="alternate" hreflang="x-default" href="https://matheusdealencar.com/"/>
+        <title>Matheus de Alencar — Ethical Hacker &amp; Full-Stack Dev</title>
+        <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/favicon.ico" sizes="48x48">
+        <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
         <!-- Idioma: bloqueante de propósito, para redirecionar antes da primeira pintura -->
         <script src="/static/js/lang.js"></script>
         <!-- BOX Icons -->
@@ -27,6 +40,89 @@
         <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
         <script src="/static/js/axios.min.js"></script>
         <script src="/static/js/api.js"></script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Person",
+                    "@id": "https://matheusdealencar.com/#matheus",
+                    "name": "Matheus de Alencar",
+                    "alternateName": "Matheus de Alencar Costa Oliveira",
+                    "jobTitle": "Full-Stack Developer & Ethical Hacker",
+                    "description": "Full-Stack Developer, Ethical Hacker, Computer Tech at Instituto Federal do Sul de Minas and Software Engineering student at Inatel.",
+                    "url": "https://matheusdealencar.com/",
+                    "image": "https://matheusdealencar.com/static/img/Matheus.png",
+                    "knowsLanguage": ["pt-BR", "en"],
+                    "sameAs": [
+                        "https://www.linkedin.com/in/matheus-de-alencar-455b2033b/",
+                        "https://www.github.com/titiomathias",
+                        "https://www.instagram.com/matheuz_alencar/"
+                    ],
+                    "knowsAbout": [
+                        "Ethical Hacking",
+                        "Penetration Testing",
+                        "Application Security",
+                        "OWASP Top 10",
+                        "Software Engineering",
+                        "Python",
+                        "JavaScript",
+                        "React",
+                        "Django",
+                        "FastAPI",
+                        "Spring Boot",
+                        "SQL"
+                    ],
+                    "alumniOf": [
+                        {
+                            "@type": "CollegeOrUniversity",
+                            "name": "Instituto Nacional de Telecomunicações (Inatel)",
+                            "url": "https://inatel.br/"
+                        },
+                        {
+                            "@type": "EducationalOrganization",
+                            "name": "Instituto Federal do Sul de Minas - Campus Pouso Alegre",
+                            "url": "https://portal.poa.ifsuldeminas.edu.br/"
+                        }
+                    ],
+                    "affiliation": {
+                        "@type": "Organization",
+                        "name": "MAI",
+                        "description": "Startup incubated at the Inatel incubator, focused on company analysis."
+                    },
+                    "performerIn": {
+                        "@type": "Event",
+                        "name": "TEDx Inatel 2025",
+                        "url": "https://inatel.br/tedx"
+                    },
+                    "award": [
+                        "Top 1 - CTF BSides SP 2026 (team Duckware)",
+                        "Top 1 - CTF Inatel #7 (2025)",
+                        "Top 3 - Inatel Programming Marathon 2025 (team Netrunners)",
+                        "Young Talent - Instituto Federal do Sul de Minas, Campus Pouso Alegre"
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://matheusdealencar.com/#website",
+                    "url": "https://matheusdealencar.com/",
+                    "name": "Matheus de Alencar",
+                    "inLanguage": ["en", "pt-BR"],
+                    "publisher": { "@id": "https://matheusdealencar.com/#matheus" }
+                },
+                {
+                    "@type": "ProfilePage",
+                    "@id": "https://matheusdealencar.com/#webpage",
+                    "url": "https://matheusdealencar.com/",
+                    "name": "Matheus de Alencar - Ethical Hacker, Full-Stack Developer and Software Engineer",
+                    "isPartOf": { "@id": "https://matheusdealencar.com/#website" },
+                    "about": { "@id": "https://matheusdealencar.com/#matheus" },
+                    "mainEntity": { "@id": "https://matheusdealencar.com/#matheus" },
+                    "inLanguage": "en"
+                }
+            ]
+        }
+        </script>
     </head>
     <body>
         <header>

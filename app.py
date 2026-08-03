@@ -1,10 +1,10 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse, Response
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
-from scripts import blog, request_site
+from scripts import blog, request_site, sitemap
 from dotenv import dotenv_values
 
 config = dotenv_values(".env")
@@ -97,6 +97,22 @@ def get_blog_post(request: Request, slug: str):
 #        "client_host": request.client.host if request.client else None,
 #        "headers": dict(request.headers),
 #    }
+
+@app.get("/robots.txt")
+def robots():
+    return FileResponse(STATIC_DIR/"robots.txt")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return FileResponse(STATIC_DIR/"favicon.ico")
+
+
+@app.get("/sitemap.xml", include_in_schema=False)
+def get_sitemap():
+    posts = blog.all_posts(templates.env, TEMPLATES_DIR)
+    xml = sitemap.build(posts, STATIC_DIR, TEMPLATES_DIR)
+    return Response(xml, media_type="application/xml")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(config["PORT"]), server_header=False)

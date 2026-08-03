@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /pt/thankyou.html
 Disallow: /thankyou.html
+
+Sitemap: https://matheusdealencar.com/sitemap.xml

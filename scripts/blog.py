@@ -26,6 +26,7 @@ class Post:
     tags: tuple[str, ...]
     reading_time: int
     template: str
+    image: str = ""
 
     @property
     def url(self) -> str:
@@ -90,6 +91,7 @@ def _build(env, path: Path) -> Post:
         tags=tuple(str(tag) for tag in meta.get("tags", ())),
         reading_time=int(meta.get("reading_time") or _reading_time(source)),
         template=name,
+        image=str(meta.get("image", "")),
     )
 
 

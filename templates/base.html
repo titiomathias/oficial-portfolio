@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-{#
-    lang="pt-br" é o padrão servido: o conteúdo dos posts é em português e é o
-    que um visitante sem JavaScript vê. `data-i18n-live` avisa o lang.js que
-    esta página traduz a interface no lugar, sem trocar de URL.
-#}
 <html lang="pt-br" data-i18n-live>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta name="description" content="{% block description %}Blog pessoal de Matheus de Alencar.{% endblock %}">
         <meta name="author" content="Matheus de Alencar">
+        <meta property="og:site_name" content="Matheus de Alencar">
         <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
         <meta property="og:description" content="{{ self.description() }}">
-        <meta property="og:image" content="https://matheusdealencar.com.br/static/img/Matheus.png">
-        <meta property="og:url" content="https://matheusdealencar.com.br{% block canonical_path %}/blog/{% endblock %}">
+        <meta property="og:image" content="{% block og_image %}https://matheusdealencar.com/static/img/Matheus.png{% endblock %}">
+        <meta property="og:image:alt" content="{% block og_image_alt %}Matheus de Alencar{% endblock %}">
+        <meta property="og:url" content="https://matheusdealencar.com{% block canonical_path %}/blog/{% endblock %}">
         <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-        <link rel="canonical" href="https://matheusdealencar.com.br{{ self.canonical_path() }}"/>
+        <meta property="og:locale" content="pt_BR">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ self.og_title() }}">
+        <meta name="twitter:description" content="{{ self.description() }}">
+        <meta name="twitter:image" content="{{ self.og_image() }}">
+        <meta name="twitter:image:alt" content="{{ self.og_image_alt() }}">
+        <link rel="canonical" href="https://matheusdealencar.com{{ self.canonical_path() }}"/>
         <title>{% block title %}Blog - Matheus de Alencar{% endblock %}</title>
-        <link rel="shortcut icon" href="#" type="image/x-icon">
+        <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/favicon.ico" sizes="48x48">
+        <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
         <!-- Idioma: bloqueante de propósito, para resolver antes da primeira pintura -->
         <script src="/static/js/lang.js"></script>
         <!-- BOX Icons -->
@@ -27,8 +32,7 @@
         <link rel="stylesheet" href="/static/css/blog.css">
         {% block head %}{% endblock %}
     </head>
-    {# `blog-page` é a casca de layout (flex vertical + rodapé colado embaixo);
-       páginas novas somam a própria classe em cima dela. #}
+
     <body class="{% block body_class %}blog-page crt{% endblock %}">
         <header>
             <a href="/" class="logo">MATHEUS DE ALENCAR</a>

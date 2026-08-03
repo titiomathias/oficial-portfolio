@@ -137,10 +137,6 @@
         return FALLBACK;
     }
 
-    function resolve() {
-        return stored() || fromBrowser();
-    }
-
     function translate(lang, key, count) {
         var table = DICT[lang] || DICT[FALLBACK];
         var value = (count === 1 && table[key + '_one']) ? table[key + '_one'] : table[key];
@@ -164,11 +160,27 @@
 
     /* --- 1. Redirecionamento nas páginas do portfólio ---------------------- */
 
+    /* Dois sinais, duas regras diferentes de propósito:
+
+       - Escolha explícita (localStorage): redireciona em qualquer direção. É uma
+         preferência que o visitante declarou clicando no seletor de idioma.
+
+       - Idioma do navegador (inferido): só redireciona a partir da página de
+         entrada, marcada com data-lang-entry — que é a mesma anunciada como
+         x-default no hreflang.
+
+       Antes o idioma do navegador valia em qualquer página, e isso expulsava o
+       Googlebot de /pt/: ele renderiza com navigator.language = "en-US", então
+       era mandado para / antes de indexar, e a versão em português nunca entrava
+       no índice. Bots não têm localStorage, logo nunca caem na primeira regra. */
+
     var pageLang = normalize(html.getAttribute('data-lang-page'));
     var alt = html.getAttribute('data-lang-alt');
-    var lang = resolve();
+    var choice = stored();
+    var lang = choice || fromBrowser();
+    var isEntryPage = html.hasAttribute('data-lang-entry');
 
-    if (pageLang && alt && lang !== pageLang) {
+    if (pageLang && alt && lang !== pageLang && (choice || isEntryPage)) {
         /* replace() em vez de assign(): o botão voltar não fica preso no loop. */
         window.location.replace(alt);
         return;

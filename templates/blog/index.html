@@ -4,6 +4,45 @@
 {% block description %}Notas sobre projetos pessoais, jornada de desenvolvimento e o que aprendo pelo caminho.{% endblock %}
 {% block canonical_path %}/blog/{% endblock %}
 
+{% block head %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Blog do Matheus de Alencar",
+        "description": {{ self.description() | trim | tojson }},
+        "url": "https://matheusdealencar.com/blog/",
+        "inLanguage": "pt-BR",
+        {# Mesmo @id da home: o autor do blog e o dono do site são o mesmo nó no grafo. #}
+        "author": {
+            "@type": "Person",
+            "@id": "https://matheusdealencar.com/#matheus",
+            "name": "Matheus de Alencar",
+            "alternateName": "Matheus de Alencar Costa Oliveira",
+            "url": "https://matheusdealencar.com/",
+            "jobTitle": "Full-Stack Developer & Ethical Hacker",
+            "sameAs": [
+                "https://www.linkedin.com/in/matheus-de-alencar-455b2033b/",
+                "https://www.github.com/titiomathias",
+                "https://www.instagram.com/matheuz_alencar/"
+            ]
+        },
+        "blogPost": [
+            {% for post in posts %}
+            {
+                "@type": "BlogPosting",
+                "headline": {{ post.title | tojson }},
+                "description": {{ (post.summary or post.title) | tojson }},
+                "url": {{ ("https://matheusdealencar.com" + post.url) | tojson }},
+                "datePublished": {{ post.date_iso | tojson }},
+                "timeRequired": "PT{{ post.reading_time }}M"
+            }{{ "," if not loop.last }}
+            {% endfor %}
+        ]
+    }
+    </script>
+{% endblock %}
+
 {% block content %}
     <div class="term" aria-label="Terminal">
         <div class="term__bar">
@@ -24,7 +63,6 @@
         </div>
     </div>
 
-    {# Visível só quando a interface está em inglês: os posts seguem em português. #}
     <p class="lang-notice" data-i18n="blog.langNotice">Os posts são escritos em português.</p>
 
     {% if tags %}

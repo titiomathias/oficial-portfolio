@@ -1,9 +1,62 @@
 {% extends "base.html" %}
 
+{% set post_image = "https://matheusdealencar.com/static/img/Matheus.png" %}
+{% if meta.image %}
+    {% set post_image = meta.image if meta.image.startswith("http") else "https://matheusdealencar.com" + meta.image %}
+{% endif %}
+{% set post_url = "https://matheusdealencar.com" + meta.url %}
+
 {% block title %}{{ meta.title }} - Blog | Matheus de Alencar{% endblock %}
 {% block description %}{{ meta.summary or meta.title }}{% endblock %}
 {% block canonical_path %}{{ meta.url }}{% endblock %}
 {% block og_type %}article{% endblock %}
+{% block og_image %}{{ post_image }}{% endblock %}
+{% block og_image_alt %}{{ meta.title }}{% endblock %}
+
+{% block head %}
+    <meta property="article:published_time" content="{{ meta.date_iso }}">
+    <meta property="article:author" content="Matheus de Alencar">
+    {% for tag in meta.tags %}
+        <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": {{ meta.title | tojson }},
+        "description": {{ (meta.summary or meta.title) | tojson }},
+        "image": {{ post_image | tojson }},
+        "url": {{ post_url | tojson }},
+        "mainEntityOfPage": { "@type": "WebPage", "@id": {{ post_url | tojson }} },
+        "datePublished": {{ meta.date_iso | tojson }},
+        "dateModified": {{ meta.date_iso | tojson }},
+        "inLanguage": "pt-BR",
+        "timeRequired": "PT{{ meta.reading_time }}M",
+        {% if meta.tags %}"keywords": {{ (meta.tags | join(", ")) | tojson }},{% endif %}
+        "isPartOf": {
+            "@type": "Blog",
+            "name": "Blog do Matheus de Alencar",
+            "url": "https://matheusdealencar.com/blog/"
+        },
+        {# Mesmo @id da home: o autor dos posts e o dono do site são o mesmo nó no grafo. #}
+        "author": {
+            "@type": "Person",
+            "@id": "https://matheusdealencar.com/#matheus",
+            "name": "Matheus de Alencar",
+            "alternateName": "Matheus de Alencar Costa Oliveira",
+            "url": "https://matheusdealencar.com/",
+            "jobTitle": "Full-Stack Developer & Ethical Hacker",
+            "sameAs": [
+                "https://www.linkedin.com/in/matheus-de-alencar-455b2033b/",
+                "https://www.github.com/titiomathias",
+                "https://www.instagram.com/matheuz_alencar/"
+            ]
+        },
+        "publisher": { "@id": "https://matheusdealencar.com/#matheus" }
+    }
+    </script>
+{% endblock %}
 
 {% block content %}
     <article class="post">
@@ -29,7 +82,6 @@
 
         <div class="rule" role="presentation"></div>
 
-        {# O texto do post é sempre em português, independente da interface. #}
         <div class="post-body" lang="pt-br">
             {% block post_body %}{% endblock %}
         </div>

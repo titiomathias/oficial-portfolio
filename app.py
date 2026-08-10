@@ -33,6 +33,8 @@ def health():
 
 @app.get("")
 @app.get("/")
+@app.get("/index")
+@app.get("/index.html")
 def index():
     html_path = STATIC_DIR / "index.html"
     if not html_path.exists():
@@ -42,6 +44,8 @@ def index():
 
 @app.get("/pt")
 @app.get("/pt/")
+@app.get("/pt/index")
+@app.get("/pt/index.html")
 def index_pt():
     html_path = STATIC_DIR / "pt/index.html"
     if not html_path.exists():

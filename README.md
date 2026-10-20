@@ -52,7 +52,10 @@ Crie um arquivo `.env` na raiz com base no `.env.example`:
 ```env
 URL=https://site.com.br
 PORT=1234
+FEEDBACKS_MIRROR=https://raw.githubusercontent.com/titiomathias/oficial-portfolio/main/scripts/feedbacks.json
 ```
+
+`FEEDBACKS_MIRROR` é opcional e serve à produção: veja [Avaliações](#avaliações).
 
 ## Instalação e execução local
 
@@ -84,6 +87,25 @@ A aplicação estará disponível em `http://localhost:8000`.
 | `GET` | `/static/...` | Arquivos estáticos |
 
 Documentação interativa disponível em `/docs` (Swagger UI).
+
+## Avaliações
+
+O Cloudflare do 99freelas devolve **403 para IPs de datacenter**, então a VPS não
+consegue raspar o perfil — nenhum ajuste de header resolve isso, é bloqueio por
+reputação de IP. A coleta acontece fora dela:
+
+1. O workflow `.github/workflows/feedbacks.yml` roda `python -m scripts.request_site`
+   (semanalmente ou sob demanda) e commita `scripts/feedbacks.json` quando muda.
+   Precisa da variável de repositório `URL` em *Settings → Secrets and variables →
+   Actions → Variables*.
+2. Em produção, `FEEDBACKS_MIRROR` aponta para esse JSON no GitHub. A VPS tenta o
+   site, cai no espelho e, se os dois falharem, serve o cache em disco —
+   `/reviews` nunca responde 500 por causa do bloqueio.
+3. Se a CI também for bloqueada, rode `python -m scripts.request_site` na máquina
+   local e commite o JSON. O espelho continua funcionando igual.
+
+O cache em disco vale 24h; depois de uma falha, novas tentativas ficam seguras por
+1h para não bater no Cloudflare a cada acesso.
 
 ## Escrevendo um post
 

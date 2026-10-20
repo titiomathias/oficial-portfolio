@@ -6,8 +6,11 @@ from fastapi.templating import Jinja2Templates
 from pathlib import Path
 from scripts import blog, request_site, sitemap
 from dotenv import dotenv_values
+import os
 
-config = dotenv_values(".env")
+ROOT_DIR = Path(__file__).resolve().parent
+
+config = dotenv_values(ROOT_DIR / ".env")
 
 STATIC_DIR = Path(__file__).parent / "static"
 TEMPLATES_DIR = Path(__file__).parent / "templates"
@@ -115,4 +118,4 @@ def get_sitemap():
     return Response(xml, media_type="application/xml")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(config["PORT"]), server_header=False)
+    uvicorn.run(app, host="0.0.0.0", port=int(config.get("PORT") or os.getenv("PORT") or 8000), server_header=False)

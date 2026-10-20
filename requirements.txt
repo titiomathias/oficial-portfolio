@@ -1,6 +1,7 @@
 uvicorn
 fastapi[standard]
 cloudscraper
+requests
 urllib3
 beautifulsoup4
 python-dotenv

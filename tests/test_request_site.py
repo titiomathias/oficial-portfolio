@@ -3,10 +3,11 @@ import os
 import subprocess
 import sys
 import time
-from datetime import timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
+import requests
 
 from scripts import request_site
 
@@ -51,7 +52,7 @@ class ScraperFalso:
         self.resposta = resposta
         self.urls = []
 
-    def get(self, url):
+    def get(self, url, **kwargs):
         self.urls.append(url)
         return self.resposta
 
@@ -80,6 +81,40 @@ def scraper_falso(monkeypatch):
 @pytest.fixture(autouse=True)
 def url_configurada(monkeypatch):
     monkeypatch.setattr(request_site, "config", {"URL": "https://exemplo.com.br"})
+
+
+@pytest.fixture(autouse=True)
+def ambiente_isolado(monkeypatch):
+    """Zera o estado global entre testes.
+
+    _next_retry vive no módulo, então uma falha num teste atrasaria a busca
+    nos seguintes. O espelho também precisa estar fora do caminho por padrão.
+    """
+    monkeypatch.setattr(request_site, "_next_retry", None)
+    monkeypatch.delenv("FEEDBACKS_MIRROR", raising=False)
+
+
+@pytest.fixture
+def espelho_falso(monkeypatch):
+    def _instalar(payload, status_code=200):
+        monkeypatch.setattr(request_site, "config", {
+            "URL": "https://exemplo.com.br",
+            "FEEDBACKS_MIRROR": "https://espelho.test/feedbacks.json",
+        })
+
+        class RespostaEspelho:
+            def raise_for_status(self):
+                if status_code >= 400:
+                    raise requests.HTTPError(f"{status_code}")
+
+            def json(self):
+                if isinstance(payload, Exception):
+                    raise payload
+                return payload
+
+        monkeypatch.setattr(request_site.requests, "get", lambda *a, **kw: RespostaEspelho())
+
+    return _instalar
 
 
 # --- base_url
@@ -229,3 +264,149 @@ def test_cache_na_fronteira_das_24h_ainda_vale(cache_temporario, monkeypatch):
     )
 
     assert request_site.get_feedbacks() == [{"title": "quase vencido"}]
+
+
+def test_erro_de_rede_nao_propaga(cache_temporario, monkeypatch):
+    class ScraperQueFalha:
+        def get(self, url, **kwargs):
+            raise requests.ConnectionError("sem rota para o host")
+
+    monkeypatch.setattr(
+        request_site.cloudscraper, "create_scraper", lambda: ScraperQueFalha()
+    )
+
+    assert request_site.request_site() == {"error": "fail to access site"}
+
+
+def test_passa_timeout_para_o_scraper(cache_temporario, monkeypatch):
+    chamadas = []
+
+    class ScraperQueRegistra:
+        def get(self, url, **kwargs):
+            chamadas.append(kwargs)
+            return RespostaFalsa(200, PAGINA)
+
+    monkeypatch.setattr(
+        request_site.cloudscraper, "create_scraper", lambda: ScraperQueRegistra()
+    )
+
+    request_site.request_site()
+
+    assert chamadas[0]["timeout"] == request_site.TIMEOUT
+
+
+# --- cache vencido quando o site está inacessível
+#
+# Regressão: a VPS é bloqueada pelo Cloudflare (403 por IP de datacenter), o
+# cache vencia em 24h e /reviews passava a responder 500 com os feedbacks
+# perfeitamente disponíveis em disco.
+
+def _vencer(caminho):
+    velho = time.time() - timedelta(days=2).total_seconds()
+    os.utime(caminho, (velho, velho))
+
+
+def test_cache_vencido_sobrevive_a_falha_no_site(cache_temporario, scraper_falso):
+    cache_temporario.write_text('[{"title": "do cache"}]', encoding="utf-8")
+    _vencer(cache_temporario)
+    scraper_falso(status_code=403, content="")
+
+    assert request_site.get_feedbacks() == [{"title": "do cache"}]
+
+
+def test_sem_cache_e_com_falha_devolve_erro(cache_temporario, scraper_falso):
+    scraper_falso(status_code=403, content="")
+
+    assert request_site.get_feedbacks() == {"error": "fail to access site"}
+
+
+def test_cache_corrompido_nao_derruba_a_busca(cache_temporario, scraper_falso):
+    cache_temporario.write_text("{isso não é json", encoding="utf-8")
+    scraper_falso()
+
+    assert len(request_site.get_feedbacks()) == 2
+
+
+def test_apos_falha_nao_tenta_de_novo_na_hora(cache_temporario, scraper_falso):
+    cache_temporario.write_text('[{"title": "do cache"}]', encoding="utf-8")
+    _vencer(cache_temporario)
+    dublê = scraper_falso(status_code=403, content="")
+
+    request_site.get_feedbacks()
+    request_site.get_feedbacks()
+
+    assert len(dublê.urls) == 1
+
+
+def test_nova_tentativa_liberada_depois_do_intervalo(cache_temporario, scraper_falso, monkeypatch):
+    cache_temporario.write_text('[{"title": "do cache"}]', encoding="utf-8")
+    _vencer(cache_temporario)
+    dublê = scraper_falso(status_code=403, content="")
+
+    request_site.get_feedbacks()
+    monkeypatch.setattr(
+        request_site, "_next_retry", datetime.now() - timedelta(minutes=1)
+    )
+    request_site.get_feedbacks()
+
+    assert len(dublê.urls) == 2
+
+
+# --- espelho
+
+def test_espelho_assume_quando_o_site_bloqueia(cache_temporario, scraper_falso, espelho_falso):
+    scraper_falso(status_code=403, content="")
+    espelho_falso([{"title": "do espelho"}])
+
+    assert request_site.get_feedbacks() == [{"title": "do espelho"}]
+
+
+def test_espelho_grava_o_cache(cache_temporario, scraper_falso, espelho_falso):
+    scraper_falso(status_code=403, content="")
+    espelho_falso([{"title": "do espelho"}])
+
+    request_site.get_feedbacks()
+
+    assert json.loads(cache_temporario.read_text(encoding="utf-8")) == [
+        {"title": "do espelho"}
+    ]
+
+
+def test_espelho_com_resposta_invalida_cai_no_cache(cache_temporario, scraper_falso, espelho_falso):
+    cache_temporario.write_text('[{"title": "do cache"}]', encoding="utf-8")
+    _vencer(cache_temporario)
+    scraper_falso(status_code=403, content="")
+    espelho_falso({"nao": "e uma lista"})
+
+    assert request_site.get_feedbacks() == [{"title": "do cache"}]
+
+
+def test_sem_espelho_configurado_nao_acessa_a_rede(cache_temporario, monkeypatch):
+    monkeypatch.setattr(
+        request_site.requests, "get", lambda *a, **kw: pytest.fail("não deveria acessar a rede")
+    )
+
+    assert request_site.request_mirror() == {"error": "fail to access site"}
+
+
+# --- .env
+
+@pytest.mark.skipif(
+    not (RAIZ / ".env").exists(), reason="precisa do .env local (não existe na CI)"
+)
+def test_env_e_lido_da_raiz_independente_do_cwd(tmp_path):
+    """Regressão: `python3 scripts/request_site.py` dentro de scripts/ estourava
+    RuntimeError porque o dotenv era lido do diretório atual."""
+    ambiente = {k: v for k, v in os.environ.items() if k != "URL"}
+    ambiente["PYTHONPATH"] = str(RAIZ)
+
+    resultado = subprocess.run(
+        [sys.executable, "-c", "from scripts import request_site; print(request_site.base_url())"],
+        cwd=tmp_path,
+        env=ambiente,
+        capture_output=True,
+        text=True,
+    )
+
+    assert resultado.returncode == 0, resultado.stderr
+    assert resultado.stdout.strip().startswith("http")

@@ -6,7 +6,7 @@ Portfólio pessoal servido por uma API FastAPI, com suporte a dois idiomas (PT/E
 
 - **Backend:** Python 3.12, FastAPI
 - **Frontend:** HTML5, CSS3, JavaScript (Vanilla + Axios + Glider.js)
-- **Scraping:** cloudscraper + BeautifulSoup4
+- **Scraping:** cloudscraper + BeautifulSoup4 + Github Actions
 - **Deploy:** Discloud
 
 ## Estrutura

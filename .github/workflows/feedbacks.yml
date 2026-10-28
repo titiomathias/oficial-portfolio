@@ -28,7 +28,7 @@ jobs:
 
       - name: Buscar avaliações
         env:
-          URL: ${{ vars.URL }}
+          URL: ${{ secrets.URL }}
         run: python -m scripts.request_site
 
       - name: Commitar se mudou

@@ -12,6 +12,6 @@ def test_seletor_de_elemento_estrutural_e_escopado_em_body(elemento):
     sem_escopo = re.findall(r"^[ \t]*%s\s*\{" % elemento, MAIN_CSS, re.MULTILINE)
 
     assert sem_escopo == [], (
-        "`%s {` sem escopo no main.css vaza para os elementos aninhados do blog; "
+        "`%s {` sem escopo no main.css vaza para os elementos aninhados do linktree; "
         "use `body > %s {`" % (elemento, elemento)
     )

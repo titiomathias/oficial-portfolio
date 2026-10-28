@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <meta name="description" content="{% block description %}Blog pessoal de Matheus de Alencar.{% endblock %}">
+        <meta name="description" content="{% block description %}Matheus de Alencar — Desenvolvedor Full-Stack e Hacker Ético.{% endblock %}">
         <meta name="author" content="Matheus de Alencar">
         <meta property="og:site_name" content="Matheus de Alencar">
         <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
         <meta property="og:description" content="{{ self.description() }}">
         <meta property="og:image" content="{% block og_image %}https://matheusdealencar.com/static/img/Matheus.png{% endblock %}">
         <meta property="og:image:alt" content="{% block og_image_alt %}Matheus de Alencar{% endblock %}">
-        <meta property="og:url" content="https://matheusdealencar.com{% block canonical_path %}/blog/{% endblock %}">
+        <meta property="og:url" content="https://matheusdealencar.com{% block canonical_path %}/{% endblock %}">
         <meta property="og:type" content="{% block og_type %}website{% endblock %}">
         <meta property="og:locale" content="pt_BR">
         <meta name="twitter:card" content="summary_large_image">
@@ -19,7 +19,7 @@
         <meta name="twitter:image" content="{{ self.og_image() }}">
         <meta name="twitter:image:alt" content="{{ self.og_image_alt() }}">
         <link rel="canonical" href="https://matheusdealencar.com{{ self.canonical_path() }}"/>
-        <title>{% block title %}Blog - Matheus de Alencar{% endblock %}</title>
+        <title>{% block title %}Matheus de Alencar{% endblock %}</title>
         <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
         <link rel="icon" href="/favicon.ico" sizes="48x48">
         <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
@@ -29,11 +29,11 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- CSS Custom -->
         <link rel="stylesheet" href="/static/css/main.css">
-        <link rel="stylesheet" href="/static/css/blog.css">
+        <link rel="stylesheet" href="/static/css/shell.css">
         {% block head %}{% endblock %}
     </head>
 
-    <body class="{% block body_class %}blog-page crt{% endblock %}">
+    <body class="{% block body_class %}shell-page crt{% endblock %}">
         <header>
             <a href="/" class="logo">MATHEUS DE ALENCAR</a>
 
@@ -42,7 +42,6 @@
                 <a href="/#services" data-i18n="nav.services">Serviços</a>
                 <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
                 <a href="/#contact" data-i18n="nav.contact">Contato</a>
-                <a href="/blog" class="{{ 'nav--active' if nav_active|default('') == 'blog' }}" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
                     <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
@@ -57,7 +56,6 @@
                 <a href="/#services" data-i18n="nav.services">Serviços</a>
                 <a href="/#portfolio" data-i18n="nav.portfolio">Portfólio</a>
                 <a href="/#contact" data-i18n="nav.contact">Contato</a>
-                <a href="/blog" class="{{ 'nav--active' if nav_active|default('') == 'blog' }}" data-i18n="nav.blog">Blog</a>
                 <div class="dropdown">
                     <span data-i18n="nav.language">Idioma</span>
                     <div class="language">
@@ -74,7 +72,7 @@
             </div>
         </header>
 
-        <main class="{% block main_class %}blog-shell{% endblock %}">
+        <main class="{% block main_class %}shell-main{% endblock %}">
             {% block content %}{% endblock %}
         </main>
 

@@ -33,10 +33,8 @@ def _entry(loc, lastmod=None, changefreq=None, priority=None, alternates=()) -> 
     return f"    <url>\n{body}\n    </url>"
 
 
-def build(posts, static_dir: Path, templates_dir: Path) -> str:
-    """Monta o XML. ``posts`` vem de ``blog.all_posts`` (mais recente primeiro)."""
-    newest = posts[0].date.date().isoformat() if posts else None
-
+def build(static_dir: Path, templates_dir: Path) -> str:
+    """Monta o XML com as páginas públicas do site."""
     entries = [
         _entry(
             f"{SITE}/",
@@ -53,27 +51,11 @@ def build(posts, static_dir: Path, templates_dir: Path) -> str:
             alternates=HOME_ALTERNATES,
         ),
         _entry(
-            f"{SITE}/blog/",
-            lastmod=newest,
-            changefreq="weekly",
-            priority="0.8",
-        ),
-        _entry(
             f"{SITE}/linktree",
             lastmod=_lastmod(templates_dir / "linktree.html"),
             changefreq="monthly",
             priority="0.5",
         ),
-    ]
-
-    entries += [
-        _entry(
-            f"{SITE}{post.url}",
-            lastmod=post.date.date().isoformat(),
-            changefreq="yearly",
-            priority="0.7",
-        )
-        for post in posts
     ]
 
     urls = "\n".join(entries)

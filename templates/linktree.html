@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}Links — Matheus de Alencar{% endblock %}
-{% block description %}Todos os canais do Matheus de Alencar em um lugar só: portfólio, blog, currículo, contato e redes.{% endblock %}
+{% block description %}Todos os canais do Matheus de Alencar em um lugar só: portfólio, currículo, contato e redes.{% endblock %}
 {% block og_title %}Matheus de Alencar — Links{% endblock %}
 {% block canonical_path %}/linktree{% endblock %}
 {% block og_type %}profile{% endblock %}
 
-{# A casca do blog dá o layout vertical; linktree-page ajusta largura e espaçamento. #}
-{% block body_class %}blog-page linktree-page crt{% endblock %}
-{% block main_class %}blog-shell linktree-shell{% endblock %}
+{# A casca do shell dá o layout vertical; linktree-page ajusta largura e espaçamento. #}
+{% block body_class %}shell-page linktree-page crt{% endblock %}
+{% block main_class %}shell-main linktree-shell{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/css/linktree.css">
@@ -62,15 +62,6 @@
             <span class="lt-link__body">
                 <span class="lt-link__title" data-i18n="linktree.portfolio">Portfólio</span>
                 <span class="lt-link__desc" data-i18n="linktree.portfolio.desc">Projetos, serviços, prêmios e a trajetória completa.</span>
-            </span>
-            <i class='bx bx-chevron-right lt-link__arrow'></i>
-        </a>
-
-        <a href="/blog" class="lt-link">
-            <span class="lt-link__icon"><i class='bx bx-terminal'></i></span>
-            <span class="lt-link__body">
-                <span class="lt-link__title" data-i18n="linktree.blog">Blog</span>
-                <span class="lt-link__desc" data-i18n="linktree.blog.desc">Notas sobre projetos pessoais, estudos e segurança.</span>
             </span>
             <i class='bx bx-chevron-right lt-link__arrow'></i>
         </a>
@@ -165,6 +156,5 @@
 {% endblock %}
 
 {% block scripts %}
-    {# blog.js: só o efeito de digitação é usado aqui — o filtro de tags sai fora sozinho. #}
-    <script src="/static/js/blog.js"></script>
+    <script src="/static/js/typewriter.js"></script>
 {% endblock %}

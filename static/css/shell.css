@@ -1,0 +1,137 @@
+:root {
+    --shell-dim: rgba(255,255,255,0.55);
+    --shell-dimmer: rgba(255,255,255,0.35);
+    --shell-line: rgba(0,245,255,0.18);
+    --shell-surface: rgba(17,20,24,0.7);
+    --shell-max: 860px;
+}
+
+.crt::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.22) 0 1px,
+        transparent 1px 3px
+    );
+    opacity: 0.45;
+}
+
+/* ---- Estrutura ---- */
+.shell-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.shell-page > .shell-main {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+.shell-page > footer {
+    flex-shrink: 0;
+}
+
+.shell-main {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 7rem 1.5rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.shell-page span[data-i18n] {
+    color: inherit;
+}
+
+.rule {
+    height: 1px;
+    margin: 1.5rem 0;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(0,245,255,0.35) 0 6px,
+        transparent 6px 12px
+    );
+}
+
+/* ---- Janela de terminal ---- */
+.term {
+    border: 1px solid var(--shell-line);
+    border-radius: 0.5rem;
+    background: var(--shell-surface);
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+}
+
+.term__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-bottom: 1px solid var(--shell-line);
+    background: rgba(0,245,255,0.04);
+}
+
+.term__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    flex-shrink: 0;
+}
+
+.term__dot--live {
+    background: var(--neon-cyan);
+    box-shadow: 0 0 6px var(--neon-cyan);
+}
+
+.term__title {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--shell-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.term__body {
+    padding: 1rem 1.3rem;
+}
+
+.term__line {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+}
+
+.term__out {
+    color: var(--shell-dim);
+    line-height: 1.8;
+    font-size: 0.92rem;
+}
+
+.prompt {
+    color: var(--neon-cyan);
+    margin-right: 0.4rem;
+}
+
+
+/* ---- Responsivo ---- */
+
+@media (max-width: 640px) {
+    .shell-main {
+        padding: 7rem 1.1rem 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .crt::after {
+        display: none;
+    }
+}

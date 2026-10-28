@@ -47,7 +47,7 @@
 .lt-role {
     margin-top: 0.5rem;
     font-size: 0.88rem;
-    color: var(--blog-dim);
+    color: var(--shell-dim);
 }
 
 /* Ícones menores e mais juntos que os da home: aqui eles são atalho, não CTA. */
@@ -67,7 +67,7 @@
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--blog-dimmer);
+    color: var(--shell-dimmer);
 }
 
 
@@ -87,7 +87,7 @@
     padding: 1rem 1.2rem;
     color: var(--text-color);
     background: rgba(13,13,13,0.5);
-    border: 1px solid var(--blog-line);
+    border: 1px solid var(--shell-line);
     border-left: 2px solid rgba(0,245,255,0.35);
     border-radius: 0.4rem;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
@@ -130,7 +130,7 @@
 .lt-link__desc {
     font-size: 0.82rem;
     line-height: 1.55;
-    color: var(--blog-dim);
+    color: var(--shell-dim);
 }
 
 .lt-link__arrow {
@@ -165,7 +165,7 @@
 
 .lt-back a::before {
     content: '$ ';
-    color: var(--blog-dimmer);
+    color: var(--shell-dimmer);
 }
 
 .lt-back a:hover {

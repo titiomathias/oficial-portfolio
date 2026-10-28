@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse, Response
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
-from scripts import blog, request_site, sitemap
+from scripts import request_site, sitemap
 from dotenv import dotenv_values
 import os
 
@@ -55,9 +55,7 @@ def index_pt():
 @app.get("/linktree", include_in_schema=False)
 @app.get("/linktree/")
 def get_linktree(request: Request):
-    return templates.TemplateResponse(request, "linktree.html", {
-        "nav_active": "linktree",
-    })
+    return templates.TemplateResponse(request, "linktree.html", {})
 
 
 @app.get("/reviews", summary="Get Reviews", tags=["Reviews"])
@@ -67,31 +65,6 @@ def get_reviews():
         raise HTTPException(status_code=500, detail=feedbacks["error"])
     return feedbacks
 
-
-@app.get("/blog", include_in_schema=False)
-@app.get("/blog/")
-def get_blog(request: Request):
-    posts = blog.all_posts(templates.env, TEMPLATES_DIR)
-    return templates.TemplateResponse(request, "blog/index.html", {
-        "posts": posts,
-        "tags": blog.all_tags(posts),
-        "nav_active": "blog",
-    })
-
-
-@app.get("/blog/{slug}")
-def get_blog_post(request: Request, slug: str):
-    post = blog.get_post(templates.env, TEMPLATES_DIR, slug)
-    if post is None:
-        raise HTTPException(status_code=404, detail="Post não encontrado.")
-
-    newer, older = blog.neighbours(blog.all_posts(templates.env, TEMPLATES_DIR), slug)
-    return templates.TemplateResponse(request, post.template, {
-        "meta": post,
-        "newer": newer,
-        "older": older,
-        "nav_active": "blog",
-    })
 
 # Probe client
 #@app.get("/_probe")
@@ -113,8 +86,7 @@ def favicon():
 
 @app.get("/sitemap.xml", include_in_schema=False)
 def get_sitemap():
-    posts = blog.all_posts(templates.env, TEMPLATES_DIR)
-    xml = sitemap.build(posts, STATIC_DIR, TEMPLATES_DIR)
+    xml = sitemap.build(STATIC_DIR, TEMPLATES_DIR)
     return Response(xml, media_type="application/xml")
 
 if __name__ == "__main__":

@@ -11,23 +11,10 @@
             'nav.services': 'Serviços',
             'nav.portfolio': 'Portfólio',
             'nav.contact': 'Contato',
-            'nav.blog': 'Blog',
             'nav.language': 'Idioma',
             'nav.english': 'Inglês',
             'nav.portuguese': 'Português',
             'footer.rights': 'Copyright © 2026 por Matheus de Alencar. Todos os direitos reservados.',
-            'blog.records': '{n} registros encontrados.',
-            'blog.records_one': '{n} registro encontrado.',
-            'blog.intro': 'Anotações sobre projetos pessoais, estudos e a jornada de virar uma pessoa melhor. Sem pauta, sem calendário editorial. Apenas o que valeu a pena escrever.',
-            'blog.filter': '// filtrar:',
-            'blog.all': 'todos',
-            'blog.readingTime': '{n} min de leitura',
-            'blog.noResults': 'nenhum post com essa tag.',
-            'blog.empty': 'nenhum post publicado ainda. volte em breve.',
-            'post.eof': 'EOF — obrigado por ler até aqui.',
-            'post.prev': '<< anterior',
-            'post.next': 'próximo >>',
-            'blog.langNotice': 'Os posts são escritos em português.',
             'linktree.role': 'Dev Full-Stack · Hacker Ético · Software Engineer',
             'linktree.intro': 'Engenharia de software e segurança ofensiva. Aqui ficam todos os canais: onde eu escrevo, onde eu publico código e onde me chamar para um projeto.',
             'linktree.group.content': '// conteúdo',
@@ -36,8 +23,6 @@
             'linktree.group.highlights': '// destaques',
             'linktree.portfolio': 'Portfólio',
             'linktree.portfolio.desc': 'Projetos, serviços, prêmios e a trajetória completa.',
-            'linktree.blog': 'Blog',
-            'linktree.blog.desc': 'Notas sobre projetos pessoais, estudos e segurança.',
             'linktree.cv': 'Currículo',
             'linktree.cv.desc': 'PDF atualizado, pronto para download.',
             'linktree.whatsapp.desc': 'Resposta mais rápida. Dúvidas e orçamentos.',
@@ -57,23 +42,10 @@
             'nav.services': 'Services',
             'nav.portfolio': 'Portfolio',
             'nav.contact': 'Contact',
-            'nav.blog': 'Blog',
             'nav.language': 'Language',
             'nav.english': 'English',
             'nav.portuguese': 'Portuguese',
             'footer.rights': 'Copyright © 2026 by Matheus de Alencar. All Rights Reserved.',
-            'blog.records': '{n} entries found.',
-            'blog.records_one': '{n} entry found.',
-            'blog.intro': 'Notes on personal projects, studies and the journey of becoming a better person. No editorial calendar, no agenda. Just what was worth writing down.',
-            'blog.filter': '// filter:',
-            'blog.all': 'all',
-            'blog.readingTime': '{n} min read',
-            'blog.noResults': 'no posts with that tag.',
-            'blog.empty': 'nothing published yet. check back soon.',
-            'post.eof': 'EOF — thanks for reading this far.',
-            'post.prev': '<< previous',
-            'post.next': 'next >>',
-            'blog.langNotice': 'Posts are written in Portuguese.',
             'linktree.role': 'Full-Stack Dev · Ethical Hacker · Software Engineer',
             'linktree.intro': 'Software engineering and offensive security. Every channel in one place: where I write, where I ship code and where to reach me for a project.',
             'linktree.group.content': '// content',
@@ -82,8 +54,6 @@
             'linktree.group.highlights': '// highlights',
             'linktree.portfolio': 'Portfolio',
             'linktree.portfolio.desc': 'Projects, services, awards and the full track record.',
-            'linktree.blog': 'Blog',
-            'linktree.blog.desc': 'Notes on personal projects, studies and security.',
             'linktree.cv': 'Résumé',
             'linktree.cv.desc': 'Up-to-date PDF, ready to download.',
             'linktree.whatsapp.desc': 'Fastest response. Questions and quotes.',
@@ -201,8 +171,8 @@
 
                 save(choice);
 
-                /* No blog dá para trocar sem sair da página; no portfólio o
-                   href leva para a versão traduzida e a navegação segue. */
+                /* No linktree dá para trocar sem sair da página; no portfólio
+                   o href leva para a versão traduzida e a navegação segue. */
                 if (live) {
                     event.preventDefault();
                     lang = choice;
